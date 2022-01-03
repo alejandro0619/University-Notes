@@ -1,7 +1,9 @@
-mod read_input;
-mod get_greater;
+//mod read_input;
+//mod get_greater;
+//mod get_average_grade;
+mod get_negatives;
 
 fn main() {
-    let inputs: [i32;3] = read_input::read_input();
-    get_greater::get_greater(inputs);
+  let a = get_negatives::get_average_negatives([1, -3, -2, 5, 4, 6, -1, 9, 44, 90]);
+  //println!("{}",a );
 }
