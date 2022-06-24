@@ -1,0 +1,96 @@
+{
+  "main": {
+    "id": "804ade81359e90e1",
+    "type": "split",
+    "children": [
+      {
+        "id": "475deb02e5dd09ad",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "discrete mathematics/book 1/chapter 1.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f1ff2b5203203aaf",
+    "type": "split",
+    "children": [
+      {
+        "id": "4f504c749103efae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "348562f5529dadc1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "0f17a478e082977f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 149.51249980926514
+  },
+  "right": {
+    "id": "ca324b8c889f9800",
+    "type": "split",
+    "children": [
+      {
+        "id": "b5427cc15071cecf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2aaf4ab9de4b03a2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "discrete mathematics/book 1/chapter 1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "475deb02e5dd09ad",
+  "lastOpenFiles": [
+    "discrete mathematics/book 1/chapter 1.md",
+    "discrete mathematics/book 1/Information.md",
+    "General view.md"
+  ]
+}
