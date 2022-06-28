@@ -187,3 +187,18 @@ Ans:
 1. There're real numbers $u$ and $v$ with the property that $u + v < u - v$
 Ans: There are real numbers such sum is less than the rest of the given numbers.
  - True, for example: $u = 1, v = -1$ so that $u +v < u -v = u - v > u + v \rightarrow 1 - (-1) > 1 + (-1) = 2 > 0$ which is true.
+ 
+2. There is a real number $x$ such that $x^2 < x$.
+Ans: There is a real number such that its square is less than the integer.
+ - False. For every real number $x$, its square will be greater than the integer itself.
+
+3. For every positive integer $n, n^2 \ge n$.
+Ans: For every positive integer, its square is greater than the integer.
+
+4. For all real numbers $a$ and $b$, $|a+b| \le |a|+|b|$.
+Ans: For all real numbers, the absolute value of the sum of two real numbers, is less than or equal to the sum of two absolute values.
+Ans: True.
+ - For example, if 
+ $a = 1, b = -5$
+$\rightarrow |a + b| \le |a| + |b| \rightarrow |1 + (-5)| \le |1| + |-5|$
+$\rightarrow |-4| \le 1 + 5 \\ \rightarrow 4 < 6$.
