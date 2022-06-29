@@ -1,12 +1,3 @@
-
-
-## Overview
-When we face a mathematical problem we are used to start by playing around with the formulas, drawing pictures that tries to describe grafically what is given within the statement of the problem. A good point to start is to acknowledge the importance of discovering the unknown, in order to complete this step, we must understand the language that is being speaked.
-
-To speak a *mathematical language* is a requisite, because there's no particularly (and good) reason to make the problem more complex, on the other hand it does simplify it by avoiding some confusion led by our grammar and the way english is interpreted.
-
-This chapter will give us a good grasp of *what speaking mathematically* really is and how it does looks like, by learning its foundations : variables, sets, relations and functions.
-
 ## Variables
 A variable can act as a "John Doe" for math, because it can be used as a placeholder when we want to talk about something but either:
 
@@ -182,23 +173,87 @@ Ans:
  - For any real number $s$, if $s$ is negative, then $\sqrt[3]{s}$  is negative.
  - If a real number $s$, $s$ > 0, then $\sqrt[3]{s} > 0$.
 -----
-### Rewrite the following statements less formally, without using variables. Determine as best as you can whether the statement is true or false.
+#### Rewrite the following statements less formally, without using variables. Determine as best as you can whether the statement is true or false.
+7. 
 
-1. There're real numbers $u$ and $v$ with the property that $u + v < u - v$
+7.1. There're real numbers $u$ and $v$ with the property that $u + v < u - v$
 Ans: There are real numbers such sum is less than the rest of the given numbers.
  - True, for example: $u = 1, v = -1$ so that $u +v < u -v = u - v > u + v \rightarrow 1 - (-1) > 1 + (-1) = 2 > 0$ which is true.
  
-2. There is a real number $x$ such that $x^2 < x$.
+7.2. There is a real number $x$ such that $x^2 < x$.
 Ans: There is a real number such that its square is less than the integer.
  - False. For every real number $x$, its square will be greater than the integer itself.
 
-3. For every positive integer $n, n^2 \ge n$.
+7.3. For every positive integer $n, n^2 \ge n$.
 Ans: For every positive integer, its square is greater than the integer.
 
-4. For all real numbers $a$ and $b$, $|a+b| \le |a|+|b|$.
+7.4. For all real numbers $a$ and $b$, $|a+b| \le |a|+|b|$.
 Ans: For all real numbers, the absolute value of the sum of two real numbers, is less than or equal to the sum of two absolute values.
 Ans: True.
  - For example, if 
  $a = 1, b = -5$
 $\rightarrow |a + b| \le |a| + |b| \rightarrow |1 + (-5)| \le |1| + |-5|$
 $\rightarrow |-4| \le 1 + 5 \\ \rightarrow 4 < 6$.
+
+-----
+#### Rewrite the following statements.
+8.
+>For every object $J$, if $J$ is a square, then $J$ has four sides.
+
+8.1. All square has four sides.
+8.2. Every square has four sides.
+8.3. If an object is a square, then it has four sides.
+8.4. If $J$ is a square, then $J$ has four sides.
+8.5. For every square $J$, $J$ has four sides.
+
+
+
+9. 
+>For every equation $E$, if $E$ is quadratic then $E$ has at most two real solutions.
+
+9.1. All quadratic equations has at most two real solutions.
+
+9.2. Every quadratic equation has at most two real solutions.
+
+9.3. If an equation is quadratic, then it has at most two real solutions.
+
+9.4. If $E$ is quadratic, then it has at most two real solutions.
+
+9.5. For every quadratic equations $E$, $E$ has at most two real solutions.
+
+10. 
+>Every nonzero real number has a reciprocal.
+
+10.1. All nonzero real numbers has a reciprocal.
+
+10.2. For every nonzero real number $r$, there is a reciprocal for $r$.
+
+10.3. For every nonzero real number $r$, there is a real number $s$ such that $s$ is a reciprocal for $r$.
+
+11. 
+>Every positive integer has a positive square root.
+
+11.1. All positive number has a positive square root.
+
+11.2. For every positive number $e$, there is a positive square root of $e$.
+
+11.3. For every positive number $e$, there is a positive number $r$ such that $r$ is the square root for $e$.
+
+12. 
+> There is a real number whose product with every number leaves the number unchanged.
+
+12.1. Some real number has the property that its product with every number leaves the number unchanged.
+
+12.2. There is a number $r$ such that the product of $r$ with every number leaves the number unchaged.
+
+12.3. For every real number $r$ with the property that for every real number $s$, $r \cdot s = s$.
+
+13.
+
+>There is a real number whose with every real number equals zero.
+
+13.1. Some that has property that its productt with every real number equals zero.
+
+13.2. There is a real number $a$ such that the product of $a$ with every real numbers equals to zero.
+
+13.3. There is a real number $a$ with the property that for every real number $b$, $a \cdot b = 0$.
