@@ -11,6 +11,8 @@ If $S$ is a set, the notation $x \in S$ means that $x$ is an element of $S$. The
 
 The **axiom of extension** says that a set is a completely determined by what its elements are - not the order in which they might be listed or the fact that some elements might be listed more than once.
 
+----
+
 ##### Examples
 1. Let $A = \{1, 2, 3\}, B = \{3, 1, 2\},$ and $C = \{1, 1, 2, 3, 3, 3\}$. 
  1.1. What are the elements of $A, B$ and $C$?
@@ -45,6 +47,8 @@ We can denote this set as follows: $\{x \in S | P_(x)\}$.
 
 Occasionally we will write $\{x | P_(x)\}$ without being specific about where the $x$ element comes from. It is not a good notation to use because the unrestricted use of it could lead to contradictions in set theory.
 
+----
+
 ##### Examples
 Given that $\mathbb{R}$ denotes the set of all real numbers, $\mathbb{Z}$ the set of all integers, and $\mathbb{Z^+}$ the set of all positive integers, describe each of the following sets
 
@@ -72,3 +76,128 @@ It follows fronm the definitions of subset that for a $A$ not to be a subset of 
 
 Symbolically: $A \nsubseteq B$ means that there is at least one element $x$ s.t $x \in A$ but $x \notin B$.
 
+#### Definition
+Let $A$ and be $B$ be sets. $A$ is a proper subset $B$ iff every element of $A$ is at least one element of $B$ that is not in $A$.
+
+----
+
+##### Examples
+1. Let $A$ = $\mathbb{Z^+}, B = \{n \in \mathbb{Z} | 0 \le n \le 100\}$ and $C = \{100, 200, 300, 400, 500, 600\}$. Evaluate the truth and falsity of each following statements.
+
+1.2. $B \subseteq A$ 
+**Ans**: False, there are elements in $A$ that are not in $B$. Because 0 is not a positive integer.
+
+1.3. $C$ is a proper subset of $A$.
+**Ans**: True, because there are at least infinite elements in $A$ that are not in $B$.
+
+1.4. $C$ and $B$ have at least one element in common.
+**Ans**: True, the element in common is 100.
+
+1.5. $C \subseteq B$.
+Ans: False, only one element is in $C$ that is in $B$.
+
+1.6. $C \subseteq C$.
+**Ans**: True, every set is a subset of itself.
+
+----
+
+2. Which of the following are true statements:
+
+2.1. $2 \in \{1, 2, 3\}$.
+**Ans**: True.
+
+2.2. $\{2\} \in \{1, 2, 3\}$.
+**Ans**: False.
+
+2.3. $2 \subseteq \{1, 2, 3\}$.
+**Ans**: False, 2 is not a set.
+
+2.4. $\{2\} \subseteq \{1, 2, 3\}$.
+**Ans**: True.
+
+2.5. $\{2\} \in \{\{1\}, \{2\}\}$.
+**Ans**: True.
+
+
+----
+### Cartesian Products
+With the introduction of Georg Cantor's set theory in the late nineteenth century, it began to seem possible to put mathematics on a firm logical foundation by developing all of its various branchs from set theory and logic alone.
+
+A major stumbling block was how to use sets to define an ordered pair because the definition of a set is unaffected by the order in which its element are listed. For example $\{a, b\}$ and $\{b, a\}$ represent the same set, whereas in an ordered pair we want to be able to indicate which element comes first.
+
+In 1914, crucial breakthroughts were made by Norbert Wiener,a young American who had recently received his Ph.D from Hardvard, and the German mathematician Felix Hausdorff. Both gave definitions showing that an ordered pair can be defined as a certain type of set, but both definitions were somewhat awkward. Finally in 1921, the Polish mathematician Kazimierz Kuratowski publish the following definition, which has since become standard. 
+
+It says that an ordered pair is a set of the form: $\{\{a\}, \{a,b\}\}$
+
+This set has element, $\{a\}$ and $\{a,b\}$. If $a \ne b$, then the two sets are distinct and $a$ is in both sets, whereas $b$ is not. This allows us to distinguish between $a$ and $b$ and say that $a$ is the first element of the ordered pair and $b$ is the second element of the pair. If $a = b$, then we can simply say that $a$ is both the first and second element in the ordered pair. In this case the set that describes the ordered pair is: $\{\{a\}, \{a, a\}\}$, which is equal to $\{\{a\}\}$.
+
+However, it was only long after ordered pairs had been used extensively in mathematics that mathematicians realized that it was possible to define them entirely in terms of sets, and, in any case, the set notation would be cumbersome to use on a regular basis. The usual notation for ordered pairs referes to $\{\{a\}, \{a,b\}\}$ more simply as $(a, b)$.
+
+#### Notation
+Given elements $a$ and $b$, the symbol $(a,b)$ denotes the ordered pair consisting of $a$ and $b$ together with the specification that $a$ is the first element, of the pair and $b$ is the second element. Two order pairs $(a, b)$ and $(c, d)$ are equal if, and only if $a = c$ and $b = d$. 
+
+Symbolically: $(a, b) = (c, d)$ means that $a = c$ and $b =d$. 
+
+----
+
+##### Examples
+1. Is $(1, 2) = (2, 1)$?
+**Ans**: No, by definition $(a, b) \ne (b, a)$.
+
+2. Is $(3, \frac{5}{10}) = (\sqrt{9}, \frac{1}{2})$?
+**Ans**: Yes, they are the same, just different representations.
+
+3. What is the first element of $(1, 1)$?
+**Ans**: The number 1.
+
+----
+
+The notation for an ordered n-tuple generalizes the notation for an ordered pair to a set with any finite number of elements. It also takes both order and multiplicity into account.
+
+#### Definition
+Let $n$ be a positive integer and let $x_1, x_2,..., x_n$ be (not necessarily distinct) elements. The ordered n-tuple, $(x_1, x_2,...,x_n)$, consists of $x_1, x_2,..., x_n$ together with the ordering: first, $x_1$, then $x_2$ and so forth up to $x_n$. And ordered 2-tuple is called an ordered pair, and an ordered 3-tuple is called an ordered triple.
+
+Two ordered n-tuples $(x_1, x_2, ..., x_3)$ and $(y_1, y_2, ..., y_n)$ are equal if, only if $x_1 = y_1, x_2 = y_2,..., x_n =y_n$.
+
+Symbolically: $(x_1, x_2, ..., x_n) = (y_1, y_2,...y_n) \iff x_1 = y_2, x_2 = y_2,..., x_n = y_n$.
+
+----
+##### Examples
+1. Is $(1, 2, 3, 4) = (1, 2, 4, 3)$?
+**Ans**: No, they aren't the same because $3 \ne 4$.
+
+2. Is $(3, (-2)^2, \frac{1}{2}) = (\sqrt{9}, 4, \frac{3}{6})$?
+**Ans**: Yes, they are the same because: $3 = \sqrt{9}, (-2)^2 = 4$ and $\frac{1}{2} = \frac{3}{6}$.
+
+----
+
+#### Definition of cartesian product
+
+Given sets $A_1, A_2,... A_n$, the cartesian product of $A_1, A_2,... A_n$, denoted by $A_1 \times A_2, \times ... \times A_n$, is the set of all ordered n-tuples $(a_1, a_2,...a_n)$ where $a_1 \in A_1, a_2 \in A_2,... a_n \in A_n$.
+
+Symbolically: $A_1 \times A_2, \times ... \times A_n = \{(a_1, a_2,...a_n) | a_1 \in A_1, a_2 \in A_2,...,a_n \in A_n \}$.
+
+In particular:
+$A_1 \times A_2 = \{(a_1, a_2) | a_1 \in A_1, a_2 \in A_2\}$
+is the cartesian product of $A_1$ and $A_2$.
+
+----
+##### Examples
+Let $A = \{x, y\}, B = \{1, 2, 3\}$ and $C = \{a, b\}$.
+
+1. Find $A \times B$.
+**Ans**: $A \times B = \{(x, 1), (y, 1), (x, 2), (y, 2), (x, 3), (y, 3)\}$.
+
+2. Find $B \times A$.
+**Ans**: $B \times A = \{(1, x), (1, y), (2, x), (2, y), (3, x), (3, y)\}$.
+
+3. Find $A \times A$.
+**Ans**: $A \times A = \{(x, x), (x, y), (y, x), (y, y)\}$.
+
+4. How many elements are in $A \times B, B \times A$ and $A \times A$.
+**Ans**: $A \times B$: 6 ordened pairs. $B \times B$: 6 ordened pairs. $A \times A$: 4 ordened pairs
+
+5. Find $(A\times B) \times C$.
+**Ans**: We know $A \times B = \{(x, 1), (y, 1), (x, 2), (y, 2), (x, 3), (y, 3)\}$  let $D = A \times B$ such that $D \times C = \{(d, c)| d \in D, c\in C\}$.
+$\therefore D \times C = \{((x, 1),a), ((y, 1),a), ((x,1), b), ((y,1),b), ((x, 2),a), ((y, 2), a),$
+$... ((x, 2),b), ((y, 2), b), ((x, 3), a), ((y, 3), a), ((x, 3), b), ((y, 3), b)$.
