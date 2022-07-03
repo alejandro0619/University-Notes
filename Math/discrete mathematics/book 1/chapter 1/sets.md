@@ -201,3 +201,26 @@ Let $A = \{x, y\}, B = \{1, 2, 3\}$ and $C = \{a, b\}$.
 **Ans**: We know $A \times B = \{(x, 1), (y, 1), (x, 2), (y, 2), (x, 3), (y, 3)\}$  let $D = A \times B$ such that $D \times C = \{(d, c)| d \in D, c\in C\}$.
 $\therefore D \times C = \{((x, 1),a), ((y, 1),a), ((x,1), b), ((y,1),b), ((x, 2),a), ((y, 2), a),$
 $... ((x, 2),b), ((y, 2), b), ((x, 3), a), ((y, 3), a), ((x, 3), b), ((y, 3), b)$.
+
+6. Find $A \times B \times C$.
+**Ans**: By the definition of Cartesian Product:
+$A \times B = \{(a_1, b_1),...,(a_n, b_m) | a  \in A, b \in B\}$.
+For instance:
+$A \times B \times C$ wil be an ordered 3-tuple:
+$A \times B \times C = \{(x, 1, a), (x, 1, b), (x, 2, a), (x, 2, b), (x, 3, a), (x, 3, b)$.
+$... , (y, 1, a), (y, 1, b), (y, 2, a), (y, 2, b), (y, 3, a), (y, 3, b)\}$.
+
+7. Let $\mathbb{R}$ denote the set of all real numbers. Describe $\mathbb{R} \times \mathbb{R}$.
+**Ans**: By definition, the set $\mathbb{R} \times \mathbb{R} = \mathbb{R}^2$.
+### Exercises
+1. When the elements of a set are given using the set roster notation, he order in which they are listed does not matter.
+2. The symbol $\mathbb{R}$ denotes the set of all real numbers.
+3. The symbol $\mathbb{Z}$ denotes the set of all integers.
+4. The symbol $\mathbb{Q}$ denotes the set of all rational numbers.
+5. The notation $\{x| P(x)\}$ the set of element $x$ such that $P_{(x)}$.
+6. For a set $A$ to be a subset of $B$ means that $A$ is contained in $B$, by definition: $\forall x(x \in A \implies x \in B)$.
+7. Given sets $A$ and $B$, the cartesian product $A \times B$ is a ordered pair $(a, b)$ where $a \in A$ and $b \in B$.
+8. Given sets $A, B$ and $C$, the Cartesian product $A \times B \times C$ is a ordered triple $a, b, c$ such that $a \in A, b \in B, c \in C$.
+9. A string of length $n$ over a set $S$ id an ordered n-tuple of elements of $S$ written without  parentheses or commas.
+
+----
