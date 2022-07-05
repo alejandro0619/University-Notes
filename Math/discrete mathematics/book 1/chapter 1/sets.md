@@ -1,4 +1,4 @@
-### Introduction
+ ### Introduction
 Use of the word $set$ as formal mathematical term was introduced in 1879 by Georg Cantor. For most mathematical purposes we can think of a set, as cantor did, simply as a collection of elements.
 
 For instance, if $C$ is the set of all countries that are currently in the United Nations, then the United States is an element of $C$, and if $I$ is the set of integers from 1 to 100, then the number 57 is an element of $I$.
@@ -224,3 +224,76 @@ $... , (y, 1, a), (y, 1, b), (y, 2, a), (y, 2, b), (y, 3, a), (y, 3, b)\}$.
 9. A string of length $n$ over a set $S$ id an ordered n-tuple of elements of $S$ written without  parentheses or commas.
 
 ----
+
+1. Which of the following sets are equal?
+ $A = \{a, b, c, d\}$, $B = \{d, e, a, c\}$, $C = \{d, b, a, c\}$, $D = \{a, a, d, e, c, e\}$.
+$A = C$ and $B = D$.
+
+2. Write in words how to read each of the following out.
+2.1. $\{x \in \mathbb{R}^+ | 0 > x < 1\}$.
+**Ans**: The set of all real positives numbers such that $x$ is between in 0 and 1.
+
+2.2. $\{x \in \mathbb{R} | x \le 0 \text{ or } x \ge 1\}$.
+**Ans**: The set of all real numbers such that $x$ is less than or equal to 0, or greater than equal to 1.
+
+2.3. $n \in \mathbb{Z} | n \text{ is a factor of } 6$.
+**Ans**: The set of all integers such that $n$ is a factor of 6.
+
+2.4. $n \in \mathbb{Z}^+ | n \text{ is a factor of } 6$.
+**Ans**: The set of all positive integers such that $n$ is a factor of 6.
+
+3. Answers the questions.
+3.1. Is $4 = \{4\}$?
+**Ans**: No, 4 is a number and $\{4\}$ is a set which only element is a four.
+
+3.2. How many elements are in the set $\{3, 4, 3, 5\}$?
+**Ans**: There are 3 elements.
+
+3.3. How many elements are in the set $\{1, \{1\}, \{1, \{1\}\}\}$?
+**Ans**: There are 3 elements.
+
+4. Answers the questions.
+4.1. Is $2 \in \{2\}$?
+**Ans**: Yes.
+
+4.2. How many elements are in the set $\{2, 2, 2, 2\}$?
+**Ans**: 1 element.
+
+4.3. Is $\{0\} \in \{\{0\}, \{1\}\}$?
+**Ans**: Yes, it is.
+
+4.4. Is $0 \in \{\{0\}, \{1\}\}$?
+**Ans**: No, it is not.
+
+5. Which of the following sets are equal?
+ $A = \{0, 1, 2\}$
+ $B = \{x \in \mathbb{R} | -1 \le x < 3\}$
+ $C = \{x \in \mathbb{R} | -1 < x < 3\}$
+ $D = \{x \in \mathbb{Z}| -1 < x < 3\}$
+ $E = \{x \in \mathbb{Z}^+ | -1 < x < 3\}$
+
+$A = C = D$
+
+6. For each integer $n$, let $T_n = \{n, n^2\}$. How many elements are in each of $T_2, T_{-3}, T_1, T_0$? Justify.
+**Ans**: For $T_2 = \{2, 4\}$. For $T_{-3} = \{-3, 9\}$. For $T_1 = \{1, 1\}$. For $T_o = \{0\}$.
+For $T_2, T_{-3},$ It has 2 elements, for $T_o$ it has 0 elements: It's a empty set, and for $T_1$ There is only one element, because $\{n, n\} = \{n\}$.
+
+7. Use the set-roster notation to indicate the elements in each of the following sets:
+
+7.1. $S = \{n \in \mathbb{Z} | n = (-1)^k\}$
+**Ans**: $\{-1, 1\}$.
+
+7.2. $T = \{ m \in \mathbb{Z} | m = 1 + (-1)^i$, for some integer $i\}$.
+**Ans**: $\{0, 2\}$.
+
+7.3. $U = \{r \in \mathbb{Z} | 2 \le 2 y \le -2\}$.
+**Ans**: $\emptyset$.
+
+7.4. $V = \{s \in \mathbb{Z} | s > 2$ or $s < 3\}$.
+**Ans**:$\mathbb{Z}$.
+
+7.5. $W = \{t \in \mathbb{Z} | 1 < t < -3\}$.
+**Ans**: $\{-3,..., 1\}$.
+
+7.6. $X  = \{u \in \mathbb{Z} | u \le 4$  or $u \ge 1\}$.
+
