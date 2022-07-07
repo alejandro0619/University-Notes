@@ -42,11 +42,11 @@ Addition of a superscript + or - or the letters *nonneg* indicates that only the
 
 -----
 #### Set-builder notation
-Let $S$ denote a ser and let $P_{(x)}$ be a property that elements of $S$ may or may not satisfy. We may define a new set to be the set of all the elements $x$ in $S$ in such that $P_(x)$ is true.
+Let $S$ denote a ser and let $P_{(x)}$ be a property that elements of $S$ may or may not satisfy. We may define a new set to be the set of all the elements $x$ in $S$ in such that $P_{(x)}$ is true.
 
-We can denote this set as follows: $\{x \in S | P_(x)\}$.
+We can denote this set as follows: $\{x \in S | P_{(x)}\}$.
 
-Occasionally we will write $\{x | P_(x)\}$ without being specific about where the $x$ element comes from. It is not a good notation to use because the unrestricted use of it could lead to contradictions in set theory.
+Occasionally we will write $\{x | P_{(x)}\}$ without being specific about where the $x$ element comes from. It is not a good notation to use because the unrestricted use of it could lead to contradictions in set theory.
 
 ----
 
