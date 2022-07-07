@@ -297,3 +297,4 @@ For $T_2, T_{-3},$ It has 2 elements, for $T_o$ it has 0 elements: It's a empty 
 
 7.6. $X  = \{u \in \mathbb{Z} | u \le 4$  or $u \ge 1\}$.
 
+----
