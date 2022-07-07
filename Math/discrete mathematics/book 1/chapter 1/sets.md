@@ -35,7 +35,8 @@ The **axiom of extension** says that a set is a completely determined by what it
 | ------------ | ------------------------------- |
 | $\mathbb{R}$ | The set of all real numbers     |
 | $\mathbb{Z}$ | The set of all integers         |
-| $\mathbb{Q}$ | The set of all rational numbers |             |                                 |
+| $\mathbb{Q}$ | The set of all rational numbers |             
+|              |                                 |
 
 Addition of a superscript + or - or the letters *nonneg* indicates that only the positive or negative or nonnegative elements of the set, respectively, are to be included. Therefore $\mathbb{R}^+$ denotes the set of positive real numbers, and $\mathbb{Z}^{\text{noneng}}$ refers to the setof nonnegative integers: 0, 1, 2, ... . Some authors refer to the set of nonnegative integers as the set of **natural numbers** and denote it as $\mathbb{N}$.
 
