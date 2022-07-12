@@ -181,3 +181,115 @@ $\text{moleculas} \space (O_2) \space = N_A \cdot n$.
 $... =6.022\times 10^{(23)} \cdot 0.1 \space mol$.
 MOLECULAS $(O_2)$ = $6.022\times 10^{22}$.
 
+-----
+7. Tenemos 4,88 g de un gas cuya naturaleza es SO2 o SO3. Para resolver la duda, los introducimos en un recipiente de 1 l y observamos que la presión que ejercen a 27ºC es de 1,5 atm. ¿De qué gas se trata?
+P. a.(S)=32.
+P. a.(O)=16.
+
+Datos:
+$m = 4,88 \space g$. De $SO_2$ o  $SO_3$.
+$V = 1 \space L$.
+$P = 1,5 \space atm$.
+$T = 27 ºC \rightarrow T = 27 + 273 = 300 ºK$.
+
+
+Para descubrir de que gas hablamos, necesitamos encontrar su P.M, y n, y mediante la formula de numero de moles observar cual de ambos gases nos generan los 4.88 g de masa.
+
+Formula:
+$PV =nRT$.
+
+Despejamos $n$:
+$n = \frac{PV}{RT} \rightarrow n = \frac{1,5 \space atm \cdot 1 \space L}{0,082 \frac{atm \cdot L}{mol ºK} \cdot 300ºK}$.
+$n = 0,061 \space$moles.
+
+Y ahora calculamos PM.
+Para $SO_2$:
+PM $(SO_2)$ = (32,00 + 2(16,00)) = 64 gr/mol.
+Para $SO_3$:
+PM $(SO_3)$ = (32,00 + 3(16,00)) = 80 gr/mol.
+
+Ahora buscamos masa:
+$n = \frac{m}{P.M}$
+
+Para $SO_2$:
+$m = n \cdot P.M \rightarrow m = 3.84 \space g$. De $SO_2$.
+
+No es.
+
+Para $SO_3$:
+$m = n \cdot P.M \rightarrow m = 4.8 \space g$. De $SO_3$.
+
+Si es.
+
+----
+8.  Un mol de gas ocupa 25 l y su densidad es 1,25 g/l, a una temperatura y presión determinadas. Calcula la densidad del gas en condiciones normales.
+
+Datos:
+
+$V_1 = 25 \space L$.
+$\rho = 1,25 \space$ g/l.
+$T$ y $P$ determinadas (constantes).
+
+Por otro lado, decimos que la densidad es:
+$\rho = \frac{m}{v}$.
+Para calcular su masa en el primer estado:
+$m = \rho \cdot v \rightarrow m = 1.25 \frac{g}{l} \cdot 25 \space L \rightarrow m = 31,25 \space g$.
+
+Mientras tanto, en condiciones normales:
+$V_0 = 22.4 \space l$.
+Y hemos calculado ya la masa, si variamos el volumen en condiciones normales:
+$\rho = \frac{m}{v} \rightarrow \rho \frac{31,25 \space g}{22,4 \space l} \rightarrow \rho = 1,39 \frac{g}{l}$.
+
+-----
+9. Un recipiente contienen 100 l de O2 a 20ºC. Calcula: 
+a) la presión del O2, sabiendo que su masa es de 3,43 kg. b) El volumen que ocupara esa cantidad de gas en c.n.
+
+Datos:
+$V_1 = 100 \space l$.
+$T_1 = 20 ºC \rightarrow T_1 = 20 + 273 = 293ºK$.
+
+Empezamos por el inciso a):
+Formula:
+$PV = nRT$.
+Despejamos $P$:
+$P = \frac{nRT}{V}$.
+
+Para calcular $n$:
+$n = \frac{m}{P.M}$, m  = masa del elemento.
+
+Convertimos masa de kg a g:
+$m = 3,43 \space kg \cdot \frac{1000 \space g }{ 1\space kg} \rightarrow m = 3430 \space g$.
+
+Calculamos P.M:
+P.M $(O_2)$ = $2(16,00) = 32 \space \frac{g}{mol}$.
+$n = \frac{3430 \space g}{32 \frac{g}{mol}} = 107, 187$.
+
+La presion es entonces:
+$P = \frac{107,187 \space mol \cdot 0,082 \frac{atm \cdot l}{mol \cdot ºK} \cdot 293 ºK}{100 \space l} \rightarrow P = 25,75 \space atm$.
+
+Para el inciso b)
+Los parametros en condiciones ordinarias:
+$T = 25ºC \rightarrow T = 25ºC + 273 = 298Kº$.
+$P = 1 \space atm$.
+$R = 0,082 \frac{atm \cdot l}{mol \cdot ºK}$.
+
+Y despejamos el volumen:
+$V = \frac{nRT}{P}$.
+Reemplazamos:
+$V = \frac{107,187 \space mol \cdot 0,082 \frac{atm \cdot l}{mol \cdot ºK} \cdot 298ºK}{1 \space atm} \rightarrow V = 2619 \space l$.
+
+----
+10.Calcula la fórmula molecular de un compuesto sabiendo que 1 l de su gas, medido a 25ºC y 750 mm Hg de presión tiene una masa de 3,88 g y que su análisis químico ha mostrado la siguiente composición centesimal: 
+
+C, 24,74 %. 
+H, 2,06 %.
+Cl, 73,20 %.
+P. a.(O)=16. P. a.(H)=1. P. a.(Cl)=35,5
+
+Datos:
+$V = 1 \space l$.
+$T = 25ºC \rightarrow T = 25 +273 = 298ºK$.
+$P = 750 \space mmHg \rightarrow 750 \space mmHg \cdot \frac{1 \space atm}{760 mmHg} = P =0,98 \space atm$.
+$m = 3,88 \space g$.
+
+
