@@ -291,5 +291,3 @@ $V = 1 \space l$.
 $T = 25ºC \rightarrow T = 25 +273 = 298ºK$.
 $P = 750 \space mmHg \rightarrow 750 \space mmHg \cdot \frac{1 \space atm}{760 mmHg} = P =0,98 \space atm$.
 $m = 3,88 \space g$.
-
-
