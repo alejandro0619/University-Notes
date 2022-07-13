@@ -291,3 +291,103 @@ $V = 1 \space l$.
 $T = 25ºC \rightarrow T = 25 +273 = 298ºK$.
 $P = 750 \space mmHg \rightarrow 750 \space mmHg \cdot \frac{1 \space atm}{760 mmHg} = P =0,98 \space atm$.
 $m = 3,88 \space g$.
+
+Pasamos a formula empirica:
+$C = \frac{24,74 \% }{12,00} = 2.06 = 2$.
+$H = \frac{2,06 \%}{1,00} = 2,06 = 2$.
+$Cl = \frac{73,20 \%}{35,5} = 2,06 = 2$.
+
+Ahora tomamos cualquiera, ya que todos valen lo mismo (No hay un valor menor al resto).
+
+$C = \frac{2}{2} = 1$.
+$H = \frac{2}{2} = 1$.
+$Cl = \frac{2}{2} = 1$.
+
+La formula empirica es $CHCl$.
+
+Para calcular numero de moles:
+Formula molecular = formula empirica $\times$ numero de moles.
+
+$FM = FE \times n$.
+Para conseguir n:
+$n = \frac{PV}{RT} \rightarrow n = \frac{0,98 \space atm \cdot 1 \space l}{0,082 \frac{atm \cdot l}{mol \cdot K} \cdot 298 K} = n = 0.040$.
+Y para calcular el peso molecular del compuesto:
+$n = \frac{m}{P.M} \rightarrow P.M = \frac{m}{n}$.
+$m = \frac{3,88 \space g}{0,04 \space mol} = m = 97 \frac{g}{mol}$.
+
+Ahora se calcula su peso molecular empirico:
+$P.M(CHCl) = 12+1+35,45 = P.M(CHCl) = 48,45 \frac{g}{mol}$.
+
+Dividimos el peso molecular del compuesto sobre el peso molecular empirico.
+
+$\frac{97}{48,5} = 2$.
+Y para calcular la formula molecular:
+$Fm = (CHCl) \cdot 2 = Fm = C_2H_2Cl_2$. 
+
+----
+11. En un recipiente de 5 l se introducen 8 g de He, 84 g de N2 y 90 g de vapor de agua.
+
+Si la temperatura del recipiente es de 27ºC. Calcular: a) La presión que soportan las paredes del recipiente. b) La fracción molar y presión parcial de cada gas.
+
+P. a. (He) = 4; 
+P. a. (O) = 16; 
+P. a. (N) = 14; 
+P. a. (H) = 1.
+
+Datos:
+$V = 5 \space l$.
+$m(He) = 8 \space g$.
+$m(N_2) = 84 \space g$.
+$m(H_2O) = 90 \space g$.
+$T = 27ºC \rightarrow T = 300ºK$.
+
+Inciso a)
+Para calcular la presion total, es necesario sumar la presion parcial de cada elemento, o sacar numero de moles total y sacar la presion parcial.
+
+Tomamos la primera iniciativa.
+
+$n = \frac{m}{P.M}$.
+
+Para $He$:
+$P.M(He) = 4,00 \frac{g}{mol}$.
+$n(He) = \frac{8 \space g}{4,00 \frac{g}{mol}} \rightarrow n(He) = 2 \space mol$.
+
+Para $N_2$:
+$P.M(N_2) = 2(14,00) \frac{g}{mol}$.
+$n(N_2) = \frac{84 \space g}{28 \frac{g}{mol}} \rightarrow n(N_2) = 3 \space mol$.
+
+Para $H_2O$:
+$P.M(H_2O) = 2(1,00) + 16 \frac{g}{mol}$.
+$n(H_2O) = \frac{90 \space g}{18,00 \frac{g}{mol}} \rightarrow n(H_2O) = 5 \space mol$.
+
+Entonces aplicamos la formula de presion para sacar las presiones parciales (Y de una vez respondemos una pregunta del inciso b). ):
+$P = \frac{nRT}{V}$.
+
+Para $He$:
+$P(He) = \frac{2 \space mol \cdot 0,082 \frac{atm \cdot l}{mol \cdot ºK} \cdot 300 ºK}{5 \space l} \rightarrow P(He) = 9,84 \space atm$.
+
+Para $N_2$:
+$P(N_2) = \frac{3 \space mol \cdot 0,082 \frac{atm \cdot l}{mol \cdot ºK} \cdot 300 ºK}{5 \space l} \rightarrow P(He) = 14,76 \space atm$.
+
+Para $H_2O$:
+$P(H_2O) = \frac{5 \space mol \cdot 0,082 \frac{atm \cdot l}{mol \cdot ºK} \cdot 300 ºK}{5 \space l} \rightarrow P(He) = 24,6 \space atm$.
+
+Una vez tenemos todas las presiones parciales:
+
+$P = (9, 84 + 14,76 + 24,6)\space atm \rightarrow P = 49,2 \space atm$.
+
+Ahora para sacar las fracciones molares, recordamos su formula:
+
+$X_i = \frac{mol \text{ Sustancia}}{mol \text{ Total}}$.
+Para sacar $mol$ Total:
+$n = n(He)+n(H_2)+n(H_2O) = 10 \space mol$.
+
+Para $He$:
+$X_{(He)} = \frac{2}{10} = X_{(He)} = 0,2 \space mol$.
+
+para $N_2$:
+$X_{(N_2)} = \frac{3}{10} = X_{(N_2)} = 0,3 \space mol$.
+
+Para $H_2O$:
+$X_{(H_2O)} = \frac{5}{10} = X_{(H_2O)} = 0,5 \space mol$.
+
