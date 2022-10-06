@@ -1,3 +1,6 @@
+/*
+Programa que sirva para realizar operaciones basicas
+*/
 #include <iostream>
 #include <math.h>
 using namespace std;
