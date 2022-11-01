@@ -7,12 +7,13 @@
 
 #include <iostream>
 
+#include <ostream>
 #include <vector>
 
 // we render the menu and asks for an option.
 int menu() {
   int answer = 0;
-  std::cout << "Ingrese alguna de las opciones listadas: \n"
+  std::cout << "\n Ingrese alguna de las opciones listadas: \n"
             << "1. Crear y llenar dos matrices bidimensionales \n"
             << "2. Calcular su diagonal \n"
             << "3. Sumar cada uno de sus elementos \n"
@@ -26,9 +27,10 @@ int menu() {
 
 int main() {
   bool correctAnswer = true;
-  int row = 0, column = 0; // es necesario que los inicialice en cero? No.
-  int accArr = 0;
-  int ans = 0; // answer
+  int row = 0, column = 0;
+  int accArr = 0;   // The sum of all elements in the arrays.
+  int accDiag = 10; // The sum of all elements in the diagonal array.
+  int ans = 0;
   std::vector<int> diagonalUno;
   std::vector<int> diagonalDos;
   std::cout << "Ingrese el valor de las filas: ";
@@ -36,9 +38,7 @@ int main() {
   std::cout << "Ingrese el valor de la columna: ";
   std::cin >> column;
 
-  int array[2][row][column]; // y en esta linea de codigo, antes tenia los
-                             // valores de row y column  = 0
-
+  int array[2][row][column];
   do {
     ans = menu();
     switch (ans) {
@@ -70,26 +70,30 @@ int main() {
               continue; // nos va a ayudar a cambiar simplemente de ciclo.
             }
           }
-      /*
-       |2 4 |
-       |3  6|:w
 
-       */
-      // Ahora recorremos el vector ya previamente creado.
       std::cout << "La diagonal de la primera matriz es: " << std::endl;
       for (int i = 0; i < diagonalUno.size(); i++) {
-        std::cout << diagonalUno[i] << " | ";
+        std::cout << diagonalUno[i] << " ";
       }
 
-      // Ahora recorremos el vector ya previamente creado.
-      std::cout << "La diagonal de la segunda matriz es: " << std::endl;
+      std::cout << "\nLa diagonal de la segunda matriz es: " << std::endl;
       for (int i = 0; i < diagonalDos.size(); i++) {
-        std::cout << diagonalDos[i];
+        std::cout << diagonalDos[i] << " ";
       }
       break;
     case 3:
+      for (int arr = 0; arr < 2; arr++)
+        for (int i = 0; i < row; i++)
+          for (int j = 0; j < column; j++) {
+            accArr += array[arr][i][j];
+          }
+      std::cout << "La suma de ambas matrices es: " << accArr << std::endl;
       break;
     case 4:
+      for (int i = 0; i < diagonalUno.size() && i < diagonalDos.size(); i++) {
+        accDiag += (diagonalUno[i] + diagonalDos[i]);
+      }
+      std::cout << "La suma de ambas diagonales es: " << accDiag << std::endl;
       break;
     case 5:
       std::cout << "Goodbye \n";
