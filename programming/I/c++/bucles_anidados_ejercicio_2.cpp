@@ -1,9 +1,7 @@
-/*
-desarrollar un programa que pida al usuario las dimensiones de una matriz m*n.
-De esa matriz mostrar los elementos de la diagonal principal,rellenar otra
-matriz n*m y realizar la suma y la multiplicación
-*/
+
 #include <iostream>
+#include <vector>
+
 using namespace std;
 int menu() {
   int respuesta = 0;
@@ -13,13 +11,19 @@ int menu() {
   cout << "3. Mostrar la diagonal de la primera matriz" << endl;
   cout << "4. Suma de las matrices " << endl;
   cout << "5. Multiplicación de las matrices" << endl;
+  cout << "6. SALIR" << endl;
+
   cin >> respuesta;
   return respuesta;
 }
 
 int main() {
   bool appState = true;
-  int page = 0, row = 0, column = 0, valorArbitrario = 0;
+  bool isArrayEmpty = true; // We control the render state of the menu
+  int page = 0, row = 0, column = 0, autoGenValue = 0;
+  vector<int> firstDiag;
+  vector<int> secondDiag;
+
   std::cout << "Cuantas matrices quieres? ";
   std::cin >> page;
   std::cout << "Cuantas filas quieres para ambas matrices? ";
@@ -27,53 +31,85 @@ int main() {
   std::cout << "Cuantas columnas quieres para ambas matrices? ";
   std::cin >> column;
   int arr[page][row][column];
+
   do {
-    switch(menu()){
-      case 1: {
-        for(int p = 0; p < page; p++) {
-          std::cout << "---- " << "matriz: " << ( p + 1)<< " ----" << std::endl;
-          for(int r = 0; r < row; r++){
-            for(int c = 0; c < column; c++){
-              std::cout << "En la posicion: [ " << r << " : " << c << " ]: "; 
-              std::cin >> arr[p][r][c];
-            }
+    switch (menu()) {
+    case 1: {
+      if (isArrayEmpty) { // If it's empty we set it to false.
+        isArrayEmpty = !isArrayEmpty;
+      }
+
+      for (int p = 0; p < page; p++) {
+        std::cout << "---- "
+                  << "matriz: " << (p + 1) << " ----" << std::endl;
+        for (int r = 0; r < row; r++) {
+          for (int c = 0; c < column; c++) {
+            std::cout << "En la posicion: [ " << r << " : " << c << " ]: ";
+            std::cin >> arr[p][r][c];
           }
         }
-        break;
       }
-        
-      case 2: {
-        for(int p = 0; p < page; p++) {
-          for(int r = 0; r < row; r++){
-            for(int c = 0; c < column; c++){
-              arr[p][r][c] = (valorArbitrario + 1);
-              valorArbitrario = valorArbitrario + 1;
-            }
-          }
-        }
-        break;
-      }
-        
-      case 3: {
-        for(int p = 0; p < page; p++) { 
-          for(int r = 0; r < row; r++){ 
-            for(int c = 0; c < column; c++){ /
-              std::cout << "En la posicion: [ " << r << " : " << c << " ]: " << arr[p][r][c] << std::endl;
-            }
-          }
-        }
-        break;
-      }
-      
-      case 4: 
-        break;
-      case 5: 
-        break;
-      default:
-        std::cout << "Invalido, ingrese de nuevo" << std::endl;
-        continue;
+      break;
     }
-    
-  } while(appState);
-      return 0;
+
+    case 2: {
+      if (isArrayEmpty) { // If it's empty we set it to false.
+        isArrayEmpty = !isArrayEmpty;
+      }
+
+      for (int p = 0; p < page; p++) {
+        for (int r = 0; r < row; r++) {
+          for (int c = 0; c < column; c++) {
+            arr[p][r][c] = autoGenValue;
+            std::cout << "[ " << p << " : " << r << " : " << c
+                      << " ] = " << autoGenValue << std::endl;
+            autoGenValue = autoGenValue + 2;
+          }
+        }
+      }
+      break;
+    }
+
+    case 3:
+      // We check if the array were not fulfilled by elements.
+      // Otherwise we loop over it and then we find the diagonal.
+      if (isArrayEmpty) {
+        std::cout << "El array no tiene elementos." << std::endl;
+      } else {
+
+        for (int p = 0; p < page; p++)
+          for (int r = 0; r < row; r++)
+            for (int c = 0; c < column; c++) {
+              // checks if the rows and columns are the same.
+              // Otherwise we skip to the next loop.
+              if (r == c) {
+                // Checks if the current page is the first one.
+                // Otherwise kinda obvious is the second page.
+                if (p == 0) {
+                  firstDiag.push_back(arr[p][r][c]);
+                } else {
+                  secondDiag.push_back(arr[p][r][c]);
+                }
+              } else
+                continue;
+            }
+      }
+
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+
+    case 6:
+      appState = !appState;
+      std::cout << "Goodbye!" << std::endl;
+      break;
+    default:
+      std::cout << "Invalido, ingrese de nuevo" << std::endl;
+      continue;
+    }
+
+  } while (appState);
+  return 0;
 }
