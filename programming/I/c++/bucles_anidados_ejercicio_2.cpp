@@ -71,30 +71,6 @@ int main() {
     }
 
     case 3:
-      // We check if the array were not fulfilled by elements.
-      // Otherwise we loop over it and then we find the diagonal.
-      if (isArrayEmpty) {
-        std::cout << "El array no tiene elementos." << std::endl;
-      } else {
-
-        for (int p = 0; p < page; p++)
-          for (int r = 0; r < row; r++)
-            for (int c = 0; c < column; c++) {
-              // checks if the rows and columns are the same.
-              // Otherwise we skip to the next loop.
-              if (r == c) {
-                // Checks if the current page is the first one.
-                // Otherwise kinda obvious is the second page.
-                if (p == 0) {
-                  firstDiag.push_back(arr[p][r][c]);
-                } else {
-                  secondDiag.push_back(arr[p][r][c]);
-                }
-              } else
-                continue;
-            }
-      }
-
       break;
     case 4:
       break;
