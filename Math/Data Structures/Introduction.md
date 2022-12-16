@@ -16,4 +16,21 @@ It does answer two questions:
 - How much **space** does this algorithm need for its computiation.
 
 ### Big-O notation.
+**Big-O notation** gives an upper bound of the complexty in the worst case, helping to quantify performance as the input size becomes a **arbitrary large**.
+
+**n** is the size of the input: Complexities are ordered in from smallest to largest.
+
+----
+**Constant time:**  O(n1)
+**Logarithmic time:** O($log(n)$$)
+**Linear time:** O(n)
+**Linearithmic time:** O($nlog(n)$)
+**Quadratic time:** O($n^2$)
+**Cubic time:** O($n^3$)
+**Exponential time:** O($b^n$), $b > 1$
+**Factorial time:** O($n!$)
+
+----
+
+
 
