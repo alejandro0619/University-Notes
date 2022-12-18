@@ -32,3 +32,21 @@ A[0] = 44
 A[2] = -5
 A[10] = index out of bounds
 ```
+
+### Operations on a dynamic array:
+It can grow and shrink in size.
+
+#### Add
+When we add values we push the new values onto the end of the array.
+
+#### Remove
+When we remove values we delete the from the end of the array and forth.
+
+### How can we implement a dynamic array?
+This can be implemented in many ways but I'll tackle the simpler ones:
+- Create a static array with an initial capacity
+- Add elements to the underlying static array, keeping track of the number of elements
+- If adding another element will exceed the capacity, then create a new static array with twice the capacity and copy the original elements into it
+
+![[pic2.png]]
+
