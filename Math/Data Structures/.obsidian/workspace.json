@@ -14,12 +14,25 @@
               "type": "markdown",
               "state": {
                 "file": "Arrays/Part one.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a5acf29cadba4f30",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Introduction.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -86,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Arrays/Part one.md",
+                "file": "Introduction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Arrays/Part one.md",
+                "file": "Introduction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Arrays/Part one.md"
+                "file": "Introduction.md"
               }
             }
           }
@@ -137,10 +150,21 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "7d8d27beb6cbb93e",
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "random-note:Open random note": false
+    }
+  },
+  "active": "a5acf29cadba4f30",
   "lastOpenFiles": [
-    "Arrays/pic1.jpg.md",
     "Arrays/Part one.md",
+    "Arrays/pic1.jpg.md",
     "Arrays/pic1.jpg",
     "pic1.jpg.md",
     "Introduction.md"

@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author spaghetti
+ *
+ */
+module secondEcGrade {
+}
