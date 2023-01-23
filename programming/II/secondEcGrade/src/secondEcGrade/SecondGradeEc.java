@@ -1,3 +1,4 @@
+// Calculate the roots of a second grade eq
 package secondEcGrade;
 import java.util.Scanner;
 
