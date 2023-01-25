@@ -1,1 +1,1 @@
-This repository is for Java projects
+This repository is for Java projects and stuff
