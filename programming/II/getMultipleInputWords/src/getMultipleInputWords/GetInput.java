@@ -1,3 +1,4 @@
+// read a whole line instead of going word by word
 package getMultipleInputWords;
 import java.util.Scanner;
 
