@@ -13,16 +13,24 @@ import java.util.Scanner;
 
 public class Homework {
 	static void getGreaterLeastGrade(int[] grades) {
-		// Here we sort the array using bubblesort (very slow but easy enough to implement at hand)
+		// Aquí para ordenar usamos el algoritmo BubbleSort (Implementado a mano)
 		// Harvard CS courses goes vrrrrr
 		/*
-		 * In BubbleSort we sort an array by the next way:
-		 * We start by index = 1 because the array of only 1 element is already sorted
-		 * And of course I don't want to face an index out of bound error at runtime
-		 * So I'll stick with the loop starting at index = 1
-		 * If the element before i is greater than i we swap them
-		 * That way I'll be looping through the whole array
-		 * And it will end up being sorted in ascending way.
+		 * En este algortimo ordenamos el arrayd de la siguiente forma:
+		 * Comenzamos en el índice 1 porque un array de 0 índices ya está ordenado
+		 * ... Y claro, no quiero un error index out of bounds en runtime por hacer i - 1 en el indice 0 jaja
+		 * Entonces me quedo con el índice = 1
+		 * Si el elemento i es menor al elemento en i - 1, entonces los cambiamos
+		 * De tal forma vamos a ordenar todo el array
+		 * Y quedará de forma ascendente, así:
+		 * [0, 10, 20, 10, 06] 
+		 * En la primera pasada verá que 0, 10 están ordenados y los deja quieto
+		 * En la segunda pasada verá que 10, 20 están ordenados y de nuevo los deja quieto.
+		 * En la tercera pasada 20, 10 está desordenado, ya que 20 es mayor a 10, y los cambia de posición
+		 * y nos queda: [0, 10, 10, 20, 06]
+		 * En el resto de pasadas se da cuenta que 20 es mayor a 06 y los cambia quedando así: [0, 10, 10, 06, 20]
+		 * De esa misma forma se va intercambiando el 06 haciendo: [0, 10, 06, 10, 20] y luego [0, 06, 10, 10, 20]
+		 * Y ya está ordenado.
 		 * */
 		boolean swapped = true;
 		while (swapped) {
@@ -37,7 +45,7 @@ public class Homework {
 			}
 		}
 		
-		// Now that the array is sorted, we pick the first item for the min and the last for the max
+		// Ya que el array está ordenado simplemente obtenemos el primer número como el menor y el último como el mayor
 		int min = grades[0];
 		int max = grades[grades.length - 1];
 		System.out.println("La mayor nota es: " + max + ". La menor nota es: " + min);
@@ -47,22 +55,21 @@ public class Homework {
 	
 	static void checkDuplicated(int[] grades) {
 		/*
-		 * As my array is already sorted using Bubblesort
-		 * The algorithm used doesn't take care enough to remove duplicated elements
-		 * So they'll be stacked all along one after the other
-		 * I took kind of advantage to avoid using two loops to "re-order" it, so bye bye to O(n^2)
-		 * Anyways I had to loop it so it keeps being O(n) at least linear complexity :D
-		 * It checks the current (i) element against the one before it (i - 1)
-		 * If they're the same I'll add 1 to the account (variable called acc)
-		 * And the current grade will be stored in a variable called freqGrade;
-		 * If the current (i) element is not equal to the last one (i - 1)
-		 * We need to check if the current account (number of repetition found) is greater than the last number of repetition
-		 * found (that means, the variable lastFreqGrade)
-		 * If it is, now it is the greatest number of repetition found inside the array so we'll mutate the lastFreqGrade
-		 * If it is not (If the inner if inside the else block evaluates to false)
-		 * We should just set acc = 1, and keep iterating over the loop.
+		 * Ya que mi Array está ordenado con BubbleSort
+		 * EL algoritmo no está encargado de eliminar valores repetidos
+		 * Así que se apilarán uno detrás del otro
+		 * Tomé ventaja de eso, así evitanto que la complejidad computacional de mi programa sea O(n^2) por usar dos bucles anidados
+		 * De todas formas tengo que recorrerlo con un bucle pero esta vez tiene complejidad computacional O(n) :P
+		 * Comprueba si el actual elemento en i es igual al elemento pasado
+		 * En caso de ser los mismos, sumo uno a mi variable acumulador llamada acc
+		 * Y la nota entonces será almacenada en mi variable llamada freqGrade
+		 * En caso de que mi elemento actual en i no sea igual a mi elemento pasado, es decir, que las notas no sean iguales
+		 * tenemos que chequear si mi contador acumulador acc es mayor a la mayor cantidad de veces que se encontró una nota
+		 * (Ese valor está en lastFreqGrade)
+		 * En caso de que lo sea, entonces habremos encontrado la mayor cantidad de notas repetidas
+		 * En caso de que no, simplemente seteamos acc = 1 y seguimos buscando
 		 * 
-		 * Oh my god this shouldn't fail.
+		 * No debería fallar... debería.
 		 * */
 		int lastFreqGrade = 0;
 		int lastAcc = 1;
@@ -87,7 +94,7 @@ public class Homework {
 	}
 	static double findAverage(int[] grades) {
 		/*
-		 * Easy as just adding up every grade and dividing against its length
+		 * Tan sencillo como sumando las notas y diviendola entre las cantidades de notas.
 		 * */
 		double gradesSum = 0;
 		for (int i = 0; i < grades.length; i++) {
@@ -97,28 +104,28 @@ public class Homework {
 	}
 	static int[] requestInput() {
 		/*
-		 * This function will take care of requesting the grades
-		 * And adding it to the array we created before the size of N ( I mean nGrades lol )
+		 * Esta función se encarga de pedir los datos del usuario
+		 * Y agregar esos datos a un String, separados por espacios
 		 * */
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Ingresa la cantidad de notas: ");
 		int nGrades = sc.nextInt();
-		// An array of grades
+		// EL array de notas
 		int[] grades = new int[nGrades];
 		
-		// We request each grade to fulfill the array
-		for (int i = 0; i < nGrades; i++) {
+		// Pedimos cada nota para llenar el array
+		for (int i = 0; i < nGrades; i++) { // Comprobamos si está en nuestro rango aceptable, es decir, 0 a 20 inclusivo
 			System.out.print("Ingrese la nota número: " + (i + 1) + ": ");
 			int grade = sc.nextInt();
 			if (grade > 0 && grade <= 20) {
 				grades[i] = grade;
 			} else {
-				i--; // We take back i because the grade is invalid
+				i--; // No avanzamos el contador porque no es un número válido
 				System.out.println("Por favor ingresa una nota válida :pppppp");
 			}
 			
 		}
-		// We show the grades
+		// Mostramos las notas
 		System.out.print("Las notas ingresadas son: ");
 		String gradesRequested = "";
 		for (int i = 0; i < nGrades; i++) {
@@ -128,10 +135,10 @@ public class Homework {
 		}
 		System.out.println(gradesRequested);
 		
-		// We execute the corresponding functions
+		// Ejecutamos las funciones correpondientes
 		getGreaterLeastGrade(grades);
 		checkDuplicated(grades);
-		// Here we find the average (creo que asi se dice promedio xd)
+		// encontramos el promedio: average (creo que asi se dice promedio xd)
 		System.out.println("El promedio es de: " + findAverage(grades));
 		return grades;
 	}
@@ -144,9 +151,10 @@ public class Homework {
 	}
 	static void displayMenu() {
 		/*
-		 * This function is responsible to displaying a menu.
-		 * As long as the number 2 is not typed it will display the menu
-		 * If the user enters the number two, idk, adiooos*/
+		 * Esta función es responsable de renderizar un menu.
+		 * Mientras que el número 2 no sea pulsado, luego de cada procesamiento de notas, volveremos a renderizarlo.
+		 * Si el usuario escribe el número dos: adioos!
+		 * */
 		Scanner sc = new Scanner(System.in);
 		int op = 0;
 		
@@ -163,7 +171,6 @@ public class Homework {
 		
 	}
 	public static void main(String[] args) {
-		// Here we display our menu to add student's note.
 		displayMenu();
 
 	}
