@@ -42,7 +42,7 @@ public class Homework {
 		int max = grades[grades.length - 1];
 		System.out.println("La mayor nota es: " + max + ". La menor nota es: " + min);
 		
-		americanGrade(min, max);
+		americanGrade(max, min);
 	}
 	
 	static void checkDuplicated(int[] grades) {
@@ -52,30 +52,37 @@ public class Homework {
 		 * So they'll be stacked all along one after the other
 		 * I took kind of advantage to avoid using two loops to "re-order" it, so bye bye to O(n^2)
 		 * Anyways I had to loop it so it keeps being O(n) at least linear complexity :D
-		 * It checks the actual (i) element against the one before it (i - 1)
-		 * If they're the same I'll add 1 to the counter (variable called duplicated)
-		 * If they both aren't the same I check if the current counter (duplicated) is greater than the last item duplicated (lastDup)
-		 * Note: On the first iteration it will always be greater than the last counter because its zero
-		 * But as the we loop through the array we'll ensure that only the most frequent item will remain at lastDup
-		 * So the item will be binded to lastCurr too.
-		 * Damn I hope it's clear enough.
+		 * It checks the current (i) element against the one before it (i - 1)
+		 * If they're the same I'll add 1 to the account (variable called acc)
+		 * And the current grade will be stored in a variable called freqGrade;
+		 * If the current (i) element is not equal to the last one (i - 1)
+		 * We need to check if the current account (number of repetition found) is greater than the last number of repetition
+		 * found (that means, the variable lastFreqGrade)
+		 * If it is, now it is the greatest number of repetition found inside the array so we'll mutate the lastFreqGrade
+		 * If it is not (If the inner if inside the else block evaluates to false)
+		 * We should just set acc = 1, and keep iterating over the loop.
+		 * 
+		 * Oh my god this shouldn't fail.
 		 * */
-		int lastDup = 1;
-		int lastCurr = 0;
-		int duplicated = 1;
-		int current = 0;
+		int lastFreqGrade = 0;
+		int lastAcc = 1;
+		int acc = 1;
+		int freqGrade = 0;
 		for (int i = 1; i < grades.length; i++) {
 			if (grades[i] == grades[i - 1]) {
-				current = grades[i];
-				duplicated += 1;
+				freqGrade = grades[i];
+				acc += 1;
 			} else {
-				if (duplicated > lastDup) {
-					lastDup = duplicated;
-					lastCurr = current;
-				}
+				if (lastAcc < acc) {
+					lastAcc = acc;
+					lastFreqGrade = freqGrade;
+					acc = 1;
+					
+				} 
+				acc = 1;
 			}
 		}
-		System.out.println("El numero " + lastCurr + " se repitio: " + lastDup + " veces.");
+		System.out.println("La nota que se repitio fue: " + lastFreqGrade + " veces: " + lastAcc);
 		
 	}
 	static double findAverage(int[] grades) {
@@ -91,7 +98,8 @@ public class Homework {
 	static int[] requestInput() {
 		/*
 		 * This function will take care of requesting the grades
-		 * And adding it to the array we created before the size of N ( I mean nGrades lol )*/
+		 * And adding it to the array we created before the size of N ( I mean nGrades lol )
+		 * */
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Ingresa la cantidad de notas: ");
 		int nGrades = sc.nextInt();
@@ -111,12 +119,14 @@ public class Homework {
 			
 		}
 		// We show the grades
-		System.out.println("Las notas ingresadas son");
+		System.out.print("Las notas ingresadas son: ");
+		String gradesRequested = "";
 		for (int i = 0; i < nGrades; i++) {
 			
-			System.out.println(grades[i]);
+			gradesRequested += (grades[i]) + " ";
 			
 		}
+		System.out.println(gradesRequested);
 		
 		// We execute the corresponding functions
 		getGreaterLeastGrade(grades);
