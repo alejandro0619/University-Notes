@@ -29,7 +29,7 @@ public class HomeworkV2 {
 		System.out.print("Ingresa la cantidad de notas: ");
 		int nGrades = sc.nextInt(); // Solo es la cantidad de datos
 		double maxGrade = Double.MIN_VALUE; // Seteamos el valor mínimo posible para un Double, ya que luego lo reescribiremos
-											// Aunque como partimos de donde nuestro mínimo valor aceptable es 0, también lo podemos usar
+						    // Aunque como partimos de donde nuestro mínimo valor aceptable es 0, también lo podemos usar
 		
 		double minGrade = Double.MAX_VALUE; // Seteamos la variable para el máximo valor posible y sucede lo mismo que arriba
 		
