@@ -12,7 +12,11 @@ package homework1;
 import java.util.Scanner;
 
 public class Homework {
-	static void getGreaterLeastGrade(int[] grades) {
+	public static void main(String[] args) {
+		displayMenu();
+
+	}	
+	static void getGreaterLeastGrade(double[] grades) {
 		// Aquí para ordenar usamos el algoritmo BubbleSort (Implementado a mano)
 		// Harvard CS courses goes vrrrrr
 		/*
@@ -37,7 +41,7 @@ public class Homework {
 			swapped = false;
 			for (int i = 1; i <= (grades.length - 1); i++) {
 				if (grades[i - 1] > grades[i]) {
-					int j = grades[i - 1];
+					double j = grades[i - 1];
 					grades[i - 1] = grades[i];
 					grades[i] = j;
 					swapped = true;
@@ -46,14 +50,14 @@ public class Homework {
 		}
 		
 		// Ya que el array está ordenado simplemente obtenemos el primer número como el menor y el último como el mayor
-		int min = grades[0];
-		int max = grades[grades.length - 1];
+		double min = grades[0];
+		double max = grades[grades.length - 1];
 		System.out.println("La mayor nota es: " + max + ". La menor nota es: " + min);
 		
 		americanGrade(max, min);
 	}
 	
-	static void checkDuplicated(int[] grades) {
+	static void checkDuplicated(double[] grades) {
 		/*
 		 * Ya que mi Array está ordenado con BubbleSort
 		 * EL algoritmo no está encargado de eliminar valores repetidos
@@ -71,10 +75,10 @@ public class Homework {
 		 * 
 		 * No debería fallar... debería.
 		 * */
-		int lastFreqGrade = 0;
+		double lastFreqGrade = 0;
 		int lastAcc = 1;
 		int acc = 1;
-		int freqGrade = 0;
+		double freqGrade = 0;
 		for (int i = 1; i < grades.length; i++) {
 			if (grades[i] == grades[i - 1]) {
 				freqGrade = grades[i];
@@ -92,7 +96,7 @@ public class Homework {
 		System.out.println("La nota que se repitio fue: " + lastFreqGrade + " veces: " + lastAcc);
 		
 	}
-	static double findAverage(int[] grades) {
+	static double findAverage(double[] grades) {
 		/*
 		 * Tan sencillo como sumando las notas y diviendola entre las cantidades de notas.
 		 * */
@@ -102,7 +106,7 @@ public class Homework {
 		}
 		return gradesSum / grades.length; 
 	}
-	static int[] requestInput() {
+	static double[] requestInput() {
 		/*
 		 * Esta función se encarga de pedir los datos del usuario
 		 * Y agregar esos datos a un String, separados por espacios
@@ -111,12 +115,12 @@ public class Homework {
 		System.out.print("Ingresa la cantidad de notas: ");
 		int nGrades = sc.nextInt();
 		// EL array de notas
-		int[] grades = new int[nGrades];
+		double[] grades = new double[(int)nGrades];
 		
 		// Pedimos cada nota para llenar el array
 		for (int i = 0; i < nGrades; i++) { // Comprobamos si está en nuestro rango aceptable, es decir, 0 a 20 inclusivo
 			System.out.print("Ingrese la nota número: " + (i + 1) + ": ");
-			int grade = sc.nextInt();
+			double grade = sc.nextDouble();
 			if (grade > 0 && grade <= 20) {
 				grades[i] = grade;
 			} else {
@@ -142,9 +146,9 @@ public class Homework {
 		System.out.println("El promedio es de: " + findAverage(grades));
 		return grades;
 	}
-	static void americanGrade(int greater, int least) {
-		int leastAmerican = least / 2;
-		int greaterAmerican = greater / 2;
+	static void americanGrade(double greater, double least) {
+		double leastAmerican = least / 2;
+		double greaterAmerican = greater / 2;
 		
 		System.out.println("La menor nota en notación Americana es: " + leastAmerican);
 		System.out.println("La mayor nota en notación Americana es: " + greaterAmerican);
@@ -170,9 +174,6 @@ public class Homework {
 		} while(op != 2);
 		
 	}
-	public static void main(String[] args) {
-		displayMenu();
-
-	}
+	
 
 }
