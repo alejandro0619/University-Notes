@@ -1,4 +1,4 @@
-// Alejandro Lopez 30 819 825
+// Alejandro Lopez CI: 30 819 825
 // PROGRAMACIÓN II.
 // Idk why I'm even commenting in english lol :p
 /*
