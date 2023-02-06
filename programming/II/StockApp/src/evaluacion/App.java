@@ -41,7 +41,7 @@ class Product {
 		this.discount = discount;
 	}
 
-	public double getDiscount(double price, double discount) {
+	public double computeDiscount(double price, double discount) {
 		discount = (discount / 100) * price;
 		double total = price - discount;
 		return total;
@@ -71,7 +71,7 @@ class Product {
 		this.amount = amount;
 	}
 
-	public double getDiscount() {
+	public double computeDiscount() {
 		return discount;
 	}
 
@@ -129,8 +129,8 @@ class ArrayProducts {
 			// En vez de hacer el tipico for, me lo ahorro y usamos este sugar syntax
 			for (Product p : this.array) {
 				System.out.println(
-						"Producto: " + p.name + "\n Precio sin descuento: " + p.price + "\n Pprecio con descuento: "
-								+ p.getDiscount(p.price, p.discount) + "\n Cantidad: " + p.amount);
+						"Producto: " + p.name + "\n Precio sin descuento: " + p.price + "\n Precio con descuento: "
+								+ p.computeDiscount(p.price, p.discount) + "\n Cantidad: " + p.amount);
 			}
 		}
 		if (bs) {
@@ -139,7 +139,7 @@ class ArrayProducts {
 				for (Product p : this.array) {
 					System.out.println(
 							"Producto: " + p.name + "\n Precio sin descuento: " + p.price * currencyConfig
-									+ "\n Precio con descuento: " + p.getDiscount(p.price, p.discount) * currencyConfig + "\n Cantidad: "
+									+ "\n Precio con descuento: " + p.computeDiscount(p.price, p.discount) * currencyConfig + "\n Cantidad: "
 									+ p.amount);
 				}
 			} else {
@@ -266,29 +266,80 @@ class ArrayProducts {
 		} while (menuStatus);
 	}
 
-	public Product[] sortProductsByPrice(Product[] productsArray) {
+	public Product[] sortProductsByPrice(Product[] productsArray, boolean discount) {
 		boolean swap = true;
-		while (swap) {
-			swap = false;
-			for (int i = 1; i <= (this.size - 1); i++) {
-				if (productsArray[i - 1].price > productsArray[i].price) {
-					Product j = productsArray[i - 1];
-					productsArray[i - 1] = productsArray[i];
-					productsArray[i] = j;
-					swap = true;
+		if (discount) {
+			while (swap) {
+				swap = false;
+				for (int i = 1; i <= (this.size - 1); i++) {
+					Product lastProd = productsArray[i - 1];
+					Product cProduct = productsArray[i];
+					if (lastProd.computeDiscount(lastProd.price, lastProd.discount) > cProduct.computeDiscount(cProduct.price, cProduct.discount)) {
+						Product j = productsArray[i - 1];
+						productsArray[i - 1] = productsArray[i];
+						productsArray[i] = j;
+						swap = true;
+					}
+				}
+			}
+		} else {
+			while (swap) {
+				swap = false;
+				for (int i = 1; i <= (this.size - 1); i++) {
+					if (productsArray[i - 1].price > productsArray[i].price) {
+						Product j = productsArray[i - 1];
+						productsArray[i - 1] = productsArray[i];
+						productsArray[i] = j;
+						swap = true;
+					}
 				}
 			}
 		}
 		return productsArray;
 	}
 
-	public void displayStats() {
+	public void sortProductsByAmount(Product[] productsArray) {
+		// We instanciate a default instance of Product
+		Product mostStockedProd = new Product(null, Double.MIN_VALUE, Integer.MIN_VALUE, Double.MIN_VALUE);
+		System.out.println("--- Productos en cero ---");
+		for (Product prod : productsArray) {
+			if (prod.amount > mostStockedProd.amount) {
+				mostStockedProd = prod;
+			}
+			if (prod.amount == 0) {
+				System.out.println("Producto en cero: " + prod.name);
+			}
+		}
+		System.out.println("--- Producto con mayor cantidad ---");
+		System.out.println("Producto con mayor cantidad: " + mostStockedProd.name + "\n");
+	}
 
-		Product[] sortedProducts = sortProductsByPrice(this.array);
-		// Mas caro y mas economico
-		System.out.println("Producto mas ecnonomico es: " + sortedProducts[0].name + " con: " + sortedProducts[0].price);
-		System.out.println("Producto mas costoso es: " + sortedProducts[this.size - 1].name + " con: "
-				+ sortedProducts[this.size - 1].price);
+	public void displayTotalPriceStock(Product[] productsArray) {
+		double sum = 0;
+		for (Product prod : productsArray) {
+			sum += prod.price;
+		}
+		System.out.println("--- Precio total del inventario sin descuento ---");
+		System.out.println("Precio total del inventario sin descuento: " + sum + "\n");
+	}
+	public void displayStats() {		
+		// Mas caro y mas economico sin descuento:
+		Product[] sortedProductsWithoutDiscount = sortProductsByPrice(this.array, false);
+		System.out.println("--- Mas costoso y mas economico sin descuento ---");
+		System.out.println("Producto mas economico es: " + sortedProductsWithoutDiscount[0].name);
+		System.out.println("Producto mas costoso es: " + sortedProductsWithoutDiscount[this.size - 1].name + "\n");
+
+		// Mas caro y mas economico con descuento
+		System.out.println("--- Mas costoso y mas economico con descuento ---");
+		Product[] sortedProductsWithDiscount = sortProductsByPrice(this.array, false);
+		System.out.println("Producto mas economico es: " + sortedProductsWithDiscount[0].name);
+		System.out.println("Producto mas costoso es: " + sortedProductsWithDiscount[this.size - 1].name + "\n");
+		
+		// Que producto esta en cero y cual no
+		sortProductsByAmount(sortedProductsWithoutDiscount);
+
+		// Precio total del inventario
+		displayTotalPriceStock(sortedProductsWithDiscount);
 
 	}
 }
