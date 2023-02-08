@@ -1,4 +1,4 @@
-// Alejandro Lopez CI 30819825
+// Alejandro Lopez CI 30819825 | proyecto de prog II
 /*
  * 1. nombre del producto
  * 2. precio (en dolares)
