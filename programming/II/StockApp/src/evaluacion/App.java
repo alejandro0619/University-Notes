@@ -1,4 +1,4 @@
-// Alejandro Lopez CI 30819825 | proyecto de prog II
+// Alejandro Lopez CI 30819825 || Proyecto de stock en prog II
 /*
  * 1. nombre del producto
  * 2. precio (en dolares)
@@ -122,6 +122,7 @@ class ArrayProducts {
 				currencyStatus = true;
 			}
 		} while (currencyStatus);
+
 		if (size == 0) {
 			System.out.println("No hay elementos, por favor primero ingreselos.");
 		}
@@ -139,7 +140,8 @@ class ArrayProducts {
 				for (Product p : this.array) {
 					System.out.println(
 							"Producto: " + p.name + "\n Precio sin descuento: " + p.price * currencyConfig
-									+ "\n Precio con descuento: " + p.computeDiscount(p.price, p.discount) * currencyConfig + "\n Cantidad: "
+									+ "\n Precio con descuento: " + p.computeDiscount(p.price, p.discount) * currencyConfig
+									+ "\n Cantidad: "
 									+ p.amount);
 				}
 			} else {
@@ -155,18 +157,21 @@ class ArrayProducts {
 			System.out.println("Ingrese los datos del producto: " + (i + 1));
 			System.out.print("Ingrese el nombre: ");
 			String name = sc.next();
+
 			System.out.print("Ingrese su precio: ");
 			double price = sc.nextDouble();
 			while (price < 0) {
 				System.out.print("No puede ser negativo su precio. Ingreselo de nuevo: ");
 				price = sc.nextDouble();
 			}
+
 			System.out.print("Ingrese la cantidad: ");
 			int amount = sc.nextInt();
 			while (amount < 0) {
 				System.out.print("No puede ser negativo su cantidad. Ingreselo de nuevo: ");
 				amount = sc.nextInt();
 			}
+			
 			System.out.print("ingrese el descuento: ");
 			double discount = sc.nextDouble();
 			while (discount < 0 || discount > 20) {
@@ -182,8 +187,8 @@ class ArrayProducts {
 		System.out.print(
 				"Que quieres modificar?\n 1: Nombre\n 2: Precio\n 3: Cantidad\n 4: Descuento\n 5: Todo\n Opcion a elegir: ");
 		int op = sc.nextInt();
-		System.out.print("Posicion del elemento a modificar: ");
-		int prodIndex = sc.nextInt();
+		System.out.print("Ingrese el numero del producto que desea modificar: ");
+		int prodIndex = sc.nextInt() - 1;
 		// Hacemos early return si no esta en el rango
 		if (prodIndex < 0 || prodIndex > this.size) {
 			System.out.print("No puedes acceder a un elemento inexistente en esa posicion: ");
@@ -274,7 +279,8 @@ class ArrayProducts {
 				for (int i = 1; i <= (this.size - 1); i++) {
 					Product lastProd = productsArray[i - 1];
 					Product cProduct = productsArray[i];
-					if (lastProd.computeDiscount(lastProd.price, lastProd.discount) > cProduct.computeDiscount(cProduct.price, cProduct.discount)) {
+					if (lastProd.computeDiscount(lastProd.price, lastProd.discount) > cProduct.computeDiscount(cProduct.price,
+							cProduct.discount)) {
 						Product j = productsArray[i - 1];
 						productsArray[i - 1] = productsArray[i];
 						productsArray[i] = j;
@@ -301,7 +307,7 @@ class ArrayProducts {
 	public void sortProductsByAmount(Product[] productsArray) {
 		// We instanciate a default instance of Product
 		Product mostStockedProd = new Product(null, Double.MIN_VALUE, Integer.MIN_VALUE, Double.MIN_VALUE);
-		System.out.println("--- Productos en cero ---");
+
 		for (Product prod : productsArray) {
 			if (prod.amount > mostStockedProd.amount) {
 				mostStockedProd = prod;
@@ -322,7 +328,8 @@ class ArrayProducts {
 		System.out.println("--- Precio total del inventario sin descuento ---");
 		System.out.println("Precio total del inventario sin descuento: " + sum + "\n");
 	}
-	public void displayStats() {		
+
+	public void displayStats() {
 		// Mas caro y mas economico sin descuento:
 		Product[] sortedProductsWithoutDiscount = sortProductsByPrice(this.array, false);
 		System.out.println("--- Mas costoso y mas economico sin descuento ---");
@@ -334,7 +341,7 @@ class ArrayProducts {
 		Product[] sortedProductsWithDiscount = sortProductsByPrice(this.array, false);
 		System.out.println("Producto mas economico es: " + sortedProductsWithDiscount[0].name);
 		System.out.println("Producto mas costoso es: " + sortedProductsWithDiscount[this.size - 1].name + "\n");
-		
+
 		// Que producto esta en cero y cual no
 		sortProductsByAmount(sortedProductsWithoutDiscount);
 
