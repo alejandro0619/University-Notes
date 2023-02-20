@@ -2,6 +2,7 @@ package students;
 
 import java.util.Scanner;
 import grades.GradesManagement;
+
 // enum for the two gender (and a third just for fun)...
 enum Gender {
   Male,
@@ -48,7 +49,7 @@ public class Student {
     this.birthDate = birthDate;
   }
 
-  public  GradesManagement getStudentGrades() {
+  public GradesManagement getStudentGrades() {
     return this.grades;
   }
 
