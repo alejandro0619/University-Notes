@@ -1,17 +1,26 @@
-package studentsManagement;
+package students;
 
+import java.util.Scanner;
 import grades.GradesManagement;
+// enum for the two gender (and a third just for fun)...
+enum Gender {
+  Male,
+  Female,
+  Other
+}
 
 public class Student {
   private String name;
   private String lastName;
   private String birthDate;
-  private GradesManagement[] grades;
+  private Gender gender;
+  private GradesManagement grades;
 
-  public Student(String name, String lastName, String birthDate, GradesManagement[] grades) {
+  public Student(String name, String lastName, String birthDate, Gender gender, GradesManagement grades) {
     this.name = name;
     this.lastName = lastName;
     this.birthDate = birthDate;
+    this.gender = gender;
     this.grades = grades;
   }
 
@@ -39,14 +48,19 @@ public class Student {
     this.birthDate = birthDate;
   }
 
-  public GradesManagement[] getGrades() {
-    return grades;
+  public  GradesManagement getStudentGrades() {
+    return this.grades;
   }
 
-  public void setGrades(GradesManagement[] grades) {
+  public void setGrades(GradesManagement grades) {
     this.grades = grades;
   }
 
- 
-  
+  public Gender getGender() {
+    return gender;
+  }
+
+  public void setGender(Gender gender) {
+    this.gender = gender;
+  }
 }

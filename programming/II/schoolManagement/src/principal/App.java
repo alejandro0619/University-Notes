@@ -1,9 +1,10 @@
 package principal;
-import studentsManagement.Student;
+import menu.MenuManagement;
 
 public class App {
     public static void main(String[] args) {
-        Student test1 = new Student("lol ", "lel", "23-03-2023", null);
+        // renderizamos el menu.
+        new MenuManagement().displayMenu();
         
     }
 }
