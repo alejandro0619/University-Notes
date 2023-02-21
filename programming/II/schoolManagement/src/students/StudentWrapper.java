@@ -77,11 +77,61 @@ public class StudentWrapper {
     for (int i = 0; i < size; i++) {
       System.out.println(
           " Nombre: " + array.get(i).getName() + "\n" +
-          " Apellido: " + array.get(i).getLastName() + "\n" +
-          " Fecha de nacimiento: " + array.get(i).getBirthDate() + "\n" +
-          " Género: " + array.get(i).getGender() + "\n" +
-          " Notas: \n" + array.get(i).getStudentGrades().displayGrades() + "\n"
-          );
+              " Apellido: " + array.get(i).getLastName() + "\n" +
+              " Fecha de nacimiento: " + array.get(i).getBirthDate() + "\n" +
+              " Género: " + array.get(i).getGender() + "\n" +
+              " Notas: \n" + array.get(i).getStudentGrades().displayGrades() + "\n");
+    }
+  }
+
+  public void editStudent() {
+    System.out.print(
+        "¿Qué quieres editar?\n1. Nombre. \n2. Apellido.\n3. Fecha de nacimiento.\n4. Género.\n5. Notas.\n6. Todo.\n Opción:"
+      );
+    int opc = this.sc.nextInt();
+
+    while (opc < 0) {
+      System.out.print("Opción inválida... Ingrese de nuevo: ");
+      opc = this.sc.nextInt();
+    }
+
+    System.out.print("Ingrese el número de lista del alumno a modificar: ");
+    int indexToEdit = this.sc.nextInt() - 1;
+
+    while (indexToEdit < 0 || indexToEdit > this.array.size()) {
+      System.out.print("Índice inválido... Ingrese de nuevo: ");
+      indexToEdit = this.sc.nextInt();
+    }
+    switch(opc) {
+      case 1: {
+        System.out.print("Ingrese el nuevo nombre: ");
+        String newName = this.sc.next(); // Obtenemos el nuevo nombre
+        Student student = this.array.get(indexToEdit); // Obtenemos el Student a editar
+        student.setName(newName); // Modificamos el field name
+        this.array.set(indexToEdit, student); //Introducimos el nuevo Student en ese indice.
+        break;
+      }
+  
+      case 2: {
+        System.out.print("Ingrese el nuevo apellido: ");
+        String newLastName = this.sc.next(); // Obtenemos el nuevo apellido
+        Student student = this.array.get(indexToEdit); // Obtenemos el Student a editar
+        student.setLastName(newLastName); // Modificamos el field latstName
+        this.array.set(indexToEdit, student); //Introducimos el nuevo Student en ese indice.
+        break;
+      }
+
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      default:
+        System.out.print("Opción incorrecta... Regresando al menú.");
+        break;
     }
   }
 }

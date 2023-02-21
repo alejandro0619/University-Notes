@@ -26,9 +26,10 @@ public class MenuManagement {
           
           break;
         case 2:
-          students.displayStudents();
+          students.editStudent();
           break;
         case 3:
+        students.displayStudents();
           break;
         case 4:
           System.out.println("Cerrando...");

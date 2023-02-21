@@ -18,9 +18,10 @@ class Grades {
   public Grades(String subject, double grades) {
     this.subject = subject;
     this.grades = grades;
+    this.americanGrades = computeAmericanGradeLetter();
   }
   // Get american grade letter of each subject from a 10 based grading system
-  public AmericanGrade getAmericanGradeLetter() {
+  public AmericanGrade computeAmericanGradeLetter() {
     double grade = this.getAmericanGradeNumber();
     if (grade < 0 || grade > 10) {
       System.err.println("La nota debe ser entre 0 y 10");

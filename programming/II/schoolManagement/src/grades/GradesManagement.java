@@ -78,7 +78,7 @@ public class GradesManagement {
       "Materia: " + grades.get(i).getSubject() +
       " | Nota venezolana: " + grades.get(i).getGrades() +
       " | Nota americana numérica: " + grades.get(i).getAmericanGradeNumber() +
-      " | Letra: " + grades.get(i).getAmericanGradeLetter();
+      " | Letra: " + grades.get(i).getAmericanGrades() + "\n";
   }
   return formattedGrades;
   }
