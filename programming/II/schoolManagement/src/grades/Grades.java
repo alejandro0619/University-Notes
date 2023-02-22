@@ -7,12 +7,13 @@ enum AmericanGrade {
   D,
   F
 }
-class Grades {
+public class Grades {
   private String subject;
   private double grades;
   private AmericanGrade americanGrades;
   
   public AmericanGrade getAmericanGrades() {
+    computeAmericanGradeLetter(); // De esta forma cada vez que queramos llamar a la funcion, tendrá la letra actualizada a pesar de haber sido modificada su antigua nota.
     return americanGrades;
   }
   public Grades(String subject, double grades) {
