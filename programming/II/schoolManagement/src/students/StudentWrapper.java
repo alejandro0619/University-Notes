@@ -59,7 +59,6 @@ public class StudentWrapper implements MathLib<Student> {
         nGrades = sc.nextInt();
       }
       GradesManagement gradesArray = new GradesManagement(nGrades);
-      gradesArray.addGrades();
 
       // Creamos el estudiante.
       Student student = new Student(name, lastName, birth, genderPicked, gradesArray);
@@ -121,12 +120,23 @@ public class StudentWrapper implements MathLib<Student> {
     System.out.println("\nEstudiantes: \n"); // Caption :)
     for (int i = 0; i < size; i++) {
       System.out.println(
-          " Nombre: " + array.get(i).getName() + "\n" +
-              " Apellido: " + array.get(i).getLastName() + "\n" +
-              " Fecha de nacimiento: " + array.get(i).getBirthDate() + "\n" +
-              " Género: " + array.get(i).getGender() + "\n" +
-              " Notas: \n" + array.get(i).getStudentGrades().displayGrades() + "\n");
+              (i + 1) + ".- " + " Nombre: " + array.get(i).getName() +
+              " Apellido: " + array.get(i).getLastName() + "\n"
+              );
     }
+    System.out.print("Seleccione a un estudiante y se le mostrará sus detalles: ");
+    int index = this.sc.nextInt() - 1;
+    while (index < 0 || index > this.array.size()) {
+      System.out.print("No hay estudiante asociado a este número de lista... Ingréselo de nuevo: ");
+      index = this.sc.nextInt() - 1;
+    }
+    System.out.print(
+      " Nombre: " + array.get(index).getName() +
+      " Apellido: " + array.get(index).getLastName() + "\n" +
+      " Fecha de nacimiento: " + array.get(index).getBirthDate() + "\n" +
+      " Género: " + array.get(index).getGender() + "\n" +
+      " Notas: \n" + array.get(index).getStudentGrades().displayGrades() + "\n"
+      );
   }
 
   public void editStudent() {
@@ -135,7 +145,7 @@ public class StudentWrapper implements MathLib<Student> {
       );
     int opc = this.sc.nextInt();
 
-    while (opc < 0) {
+    while (opc < 0 ) {
       System.out.print("Opción inválida... Ingrese de nuevo: ");
       opc = this.sc.nextInt();
     }
@@ -145,7 +155,7 @@ public class StudentWrapper implements MathLib<Student> {
 
     while (indexToEdit < 0 || indexToEdit > this.array.size()) {
       System.out.print("Índice inválido... Ingrese de nuevo: ");
-      indexToEdit = this.sc.nextInt();
+      indexToEdit = this.sc.nextInt() - 1;
     }
     switch(opc) {
       case 1: {
