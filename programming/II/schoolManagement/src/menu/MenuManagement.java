@@ -11,7 +11,7 @@ public class MenuManagement {
     StudentWrapper students = new StudentWrapper(0);
     do {
       System.out.print(
-          "Elige una opción: \n 1: Agregar cantidad de estudiantes.\n 2: Editar estudiante.\n 3: Estadísticas.\n 4: Salir.\n Opción a elegir: ");
+          "Elige una opción: \n 1: Agregar cantidad de estudiantes.\n 2: Editar estudiante.\n 3: Listado.\n 4: Estadísticas.\n 5: Salir.\n Opción a elegir: ");
       int answer = sc.nextInt();
 
       switch (answer) {
@@ -23,7 +23,6 @@ public class MenuManagement {
             size = sc.nextInt();
           }
           students = new StudentWrapper(size);
-          
           break;
         case 2:
           students.editStudent();
@@ -32,6 +31,9 @@ public class MenuManagement {
         students.displayStudents();
           break;
         case 4:
+          students.displayStadistics();
+          break;
+        case 5:
           System.out.println("Cerrando...");
           status = true;
           break;

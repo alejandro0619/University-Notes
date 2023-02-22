@@ -1,5 +1,8 @@
 package utils;
+import java.util.ArrayList;
+public interface MathLib<T> {
 
-public interface MathLib {
-  public abstract void computeAverage();
+  public ArrayList<T> computeLowest();
+  
+  public  ArrayList<T> computeGreatest();
 }

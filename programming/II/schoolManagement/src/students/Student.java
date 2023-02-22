@@ -1,6 +1,4 @@
 package students;
-
-import java.util.Scanner;
 import grades.GradesManagement;
 
 // enum for the two gender (and a third just for fun)...
@@ -16,6 +14,7 @@ public class Student {
   private String birthDate;
   private Gender gender;
   private GradesManagement grades;
+  private double average;
 
   public Student(String name, String lastName, String birthDate, Gender gender, GradesManagement grades) {
     this.name = name;
@@ -63,5 +62,13 @@ public class Student {
 
   public void setGender(Gender gender) {
     this.gender = gender;
+  }
+
+  public double getAverage() {
+    return average;
+  }
+
+  public void computeAverage() {
+    this.average =  this.grades.getAverage();
   }
 }

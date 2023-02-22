@@ -29,8 +29,8 @@ public class GradesManagement {
   // get average
   public double getAverage() {
     double sum = 0;
-    for (int i = 0; i < grades.size(); i++) {
-      sum += grades.get(i).getGrades();
+    for (Grades grade : grades) {
+      sum += grade.getGrades();
     }
     return sum / grades.size();
   }

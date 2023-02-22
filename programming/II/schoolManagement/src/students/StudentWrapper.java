@@ -2,10 +2,11 @@ package students;
 
 import grades.GradesManagement;
 import grades.Grades;
+import utils.MathLib;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class StudentWrapper {
+public class StudentWrapper implements MathLib<Student> {
   private Scanner sc = new Scanner(System.in);
   private int size;
 
@@ -24,7 +25,7 @@ public class StudentWrapper {
       // fecha de nacimiento
       System.out.print(" Ingrese su fecha de nacimiento en el formato dd-mm-yyyy: ");
       String birth = this.sc.next();
-      
+
       // Se ingresa el genero, usando alguna de variante del enum Gender
       System.out.print("Ingrese su género, Opciones: \n 1: Masculino \n 2: Femenino \n 3: Otro \n Opción elegida: ");
       int gender = sc.nextInt();
@@ -50,11 +51,10 @@ public class StudentWrapper {
             status = true;
         }
       }
-      
       // Ahora pedimos las notas 
       System.out.print("Ingrese la cantidad de notas asociadas al estudiante: ");
       int nGrades = sc.nextInt();
-      while (nGrades< 0) {
+      while (nGrades < 0) {
         System.out.print("La cantidad de notas no puede ser negativa, ingrese de nuevo: ");
         nGrades = sc.nextInt();
       }
@@ -62,9 +62,60 @@ public class StudentWrapper {
       gradesArray.addGrades();
 
       // Creamos el estudiante.
-      Student student = new Student(name, lastName, birth, genderPicked,  gradesArray);
+      Student student = new Student(name, lastName, birth, genderPicked, gradesArray);
       this.array.add(student);
     }
+  }
+  @Override
+  public ArrayList<Student> computeGreatest() {
+    ArrayList<Student> greatestGradesStudents = new ArrayList<Student>();
+
+    for (int i = 0; i < this.array.size(); i++) {
+      double greatestGrade = 0;
+      Student currStudent = this.array.get(i);
+      currStudent.computeAverage(); // Sacamos el promedio del estudiante
+
+      // Y aqui todos los mejores estudiantes con mejor promedios
+      if (currStudent.getAverage() >= greatestGrade) {
+        greatestGradesStudents.add(currStudent);
+      }
+    }
+    return greatestGradesStudents;
+  }
+  @Override
+  public ArrayList<Student> computeLowest() {
+    ArrayList<Student> lowestGradesStudents = new ArrayList<Student>();
+
+    for (int i = 0; i < this.array.size(); i++) {
+      double greatestGrade = 20;
+      Student currStudent = this.array.get(i);
+      currStudent.computeAverage(); // Sacamos el promedio del estudiante
+
+      // Y aqui todos los  estudiantes con peor promedios
+      if (currStudent.getAverage() <= greatestGrade) {
+        lowestGradesStudents.add(currStudent);
+      }
+    }
+    return lowestGradesStudents;
+  }
+
+  public void displayStadistics() {
+    System.out.print("Los estudiantes con mejor promedio son: \n");
+    for (Student bestStudent : this.computeGreatest()) {
+      System.out.print(
+              "Nombre y apellido: " + bestStudent.getName() + " " + bestStudent.getLastName() +
+              " con un promedio de: " + bestStudent.getAverage() + "\n"
+          );
+    }
+    
+    System.out.print("Los estudiantes con peor promedio son: \n");
+    for (Student bestStudent : this.computeGreatest()) {
+      System.out.print(
+          "Nombre y apellido: " + bestStudent.getName() + " " + bestStudent.getLastName() +
+          " con un promedio de: " + bestStudent.getAverage() + "\n"
+          );
+    }
+
   }
   public void displayStudents() {
     System.out.println("\nEstudiantes: \n"); // Caption :)
@@ -80,7 +131,7 @@ public class StudentWrapper {
 
   public void editStudent() {
     System.out.print(
-        "¿Qué quieres editar?\n1. Nombre. \n2. Apellido.\n3. Fecha de nacimiento.\n4. Género.\n5. Notas.\n6. Todo.\n Opción:"
+        "¿Qué quieres editar?\n 1. Nombre. \n 2. Apellido.\n 3. Fecha de nacimiento.\n 4. Género.\n 5. Notas.\n 6. Todo.\n Opción:"
       );
     int opc = this.sc.nextInt();
 
