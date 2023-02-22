@@ -3,6 +3,7 @@ package students;
 import grades.GradesManagement;
 import grades.Grades;
 import utils.MathLib;
+import utils.BirthDate;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -23,8 +24,7 @@ public class StudentWrapper implements MathLib<Student> {
       System.out.print("Ingrese su apellido: ");
       String lastName = this.sc.next();
       // fecha de nacimiento
-      System.out.print(" Ingrese su fecha de nacimiento en el formato dd-mm-yyyy: ");
-      String birth = this.sc.next();
+      BirthDate birth = new BirthDate();
 
       // Se ingresa el genero, usando alguna de variante del enum Gender
       System.out.print("Ingrese su género, Opciones: \n 1: Masculino \n 2: Femenino \n 3: Otro \n Opción elegida: ");
@@ -168,10 +168,10 @@ public class StudentWrapper implements MathLib<Student> {
 
       case 3: {
         System.out.print("Ingrese su nueva fecha de nacimiento en el siguiene formato: dd-mm-yyyy: ");
-        String newBirth = this.sc.next(); // Nueva fecha
+        BirthDate newBirth = new BirthDate(); // Nueva fecha
         Student studentToModify= this.array.get(indexToEdit); // Obtenemos el student a editar
         studentToModify.setBirthDate(newBirth); // Modificamos el field birthdate
-        this.array.set(indexToEdit, studentToModify); // Y lo volvemosa poner en ese indice
+        this.array.set(indexToEdit, studentToModify); // Y lo volvemos a poner en ese indice
         break;
       }
       case 4: {

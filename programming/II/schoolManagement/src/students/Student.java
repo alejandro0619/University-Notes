@@ -1,6 +1,6 @@
 package students;
 import grades.GradesManagement;
-
+import utils.BirthDate;
 // enum for the two gender (and a third just for fun)...
 enum Gender {
   Male,
@@ -11,12 +11,12 @@ enum Gender {
 public class Student {
   private String name;
   private String lastName;
-  private String birthDate;
+  private BirthDate birthDate;
   private Gender gender;
   private GradesManagement grades;
   private double average;
 
-  public Student(String name, String lastName, String birthDate, Gender gender, GradesManagement grades) {
+  public Student(String name, String lastName, BirthDate birthDate, Gender gender, GradesManagement grades) {
     this.name = name;
     this.lastName = lastName;
     this.birthDate = birthDate;
@@ -40,11 +40,11 @@ public class Student {
     this.lastName = lastName;
   }
 
-  public String getBirthDate() {
+  public BirthDate getBirthDate() {
     return birthDate;
   }
 
-  public void setBirthDate(String birthDate) {
+  public void setBirthDate(BirthDate birthDate) {
     this.birthDate = birthDate;
   }
 
