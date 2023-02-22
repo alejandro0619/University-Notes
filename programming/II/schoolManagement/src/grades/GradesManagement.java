@@ -2,7 +2,7 @@ package grades;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-
+;
 public class GradesManagement {
   private Scanner sc = new Scanner(System.in);
   private ArrayList<Grades> grades = new ArrayList<Grades>();
@@ -23,7 +23,7 @@ public class GradesManagement {
       grades.add(new Grades(subject, grade));
     }
   }
-  // get average
+  // Obtenemos el promedio.
   public double getAverage() {
     double sum = 0;
     for (Grades grade : grades) {
@@ -31,7 +31,29 @@ public class GradesManagement {
     }
     return sum / grades.size();
   }
-
+  // Obtenemos el promedio americano.
+  public double getAmericanAverageNumber() {
+    return this.getAverage() / 2;
+  }
+  // Promedio en nota americana letra.
+  public AmericanGrades computeAmericanGradeLetter() {
+    double av = this.getAmericanAverageNumber();
+    if (av < 0 || av > 10) {
+      System.err.println("La nota debe ser entre 0 y 10");
+      return null;
+    }
+    if (av >= 9 && av <= 10) {
+      return AmericanGrades.A;
+    } else if (av >= 8) {
+      return AmericanGrades.B;
+    } else if (av >= 7) {
+      return AmericanGrades.C;
+    } else if (av >= 6) {
+      return AmericanGrades.D;
+    } else {
+      return AmericanGrades.F;
+    }
+  }
   public int getSize() {
     return size;
   }
@@ -44,14 +66,20 @@ public class GradesManagement {
   }
   
   public String displayGrades() {
-    
-    String formattedGrades = "";
-    String average = " |Promedio: " + this.getAverage();
+    StringBuilder strBuilder = new StringBuilder();
     for (int i = 0; i < grades.size(); i++) {
-      formattedGrades += "  " + (i + 1) + ".- " +
-      "Materia: " + grades.get(i).getSubject() +
-      " | Nota venezolana: " + grades.get(i).getGrades();
-  }
-  return formattedGrades + average;
+      strBuilder.append(
+          "  " + (i + 1) + ".-" +
+          " Materia: " + grades.get(i).getSubject() +
+          " | Nota: " + grades.get(i).getGrades() + "\n"
+          );
+    }
+    strBuilder.append(
+        "Promedio Venezolano total: " + this.getAverage() +
+        "\nPromedio Americano total: " + this.getAmericanAverageNumber() +
+        "\nPromedio Americano en letras total: " + this.computeAmericanGradeLetter()
+    );
+        
+  return strBuilder.toString();
   }
 }
