@@ -1,7 +1,6 @@
 package students;
 
 import grades.GradesManagement;
-import grades.Grades;
 import utils.MathLib;
 import utils.BirthDate;
 import java.util.Scanner;
@@ -217,29 +216,22 @@ public class StudentWrapper implements MathLib<Student> {
         break;
       }
       case 5: {
-        System.out.print("¿Qué materia quieres editar? Ingrese el nombre: ");
-        String subjectToModify = this.sc.next(); // Obtenemos el nombre de la materia a modficar.
-        Student studentToModify = this.array.get(indexToEdit); // Obtenemos el student a editar.
-        GradesManagement oldGrades = studentToModify.getStudentGrades(); // Obtenemos todas las notas
-        boolean found = false; // la usamos para saber si encontramos o no el usuario
-        // Iteramos por cada nota dentro del ArrayList<Grades>
-        for (int i = 0; i < oldGrades.getSize(); i++) {
-          Grades g = oldGrades.getGrades().get(i); // Obtenemos la nota en el determinado indice.
-          // Comprobamos si el nombre de la nota a modificar existe:
-          // En caso de existir pedimos la nota, modificamos y guardamos en ese indice.
-          // Caso contrario seguimos buscando.
-          if (g.getSubject().toLowerCase().equals(subjectToModify.toLowerCase())) {
-            System.out.print("Ingrese la nueva nota: ");
-            double newGrade = this.sc.nextDouble();
-            g.setGrades(newGrade);
-            oldGrades.getGrades().set(indexToEdit, g);
-            found = true; // Setteamos found to true y asi sabremos que encontramos la nota y la modificamos.
-          }
+        System.out.print("Ingrese la posición de la nota que quiere modificar: ");
+        int indexToModifyGrade = this.sc.nextInt();
+        Student studentToModify = this.array.get(indexToEdit);
+        while (indexToModifyGrade < 0 || indexToModifyGrade > studentToModify.getStudentGrades().getSize()) {
+          System.out.print("La nota no existe en esa posición... Ingrese de nuevo");
+          indexToModifyGrade = this.sc.nextInt();
         }
-        // En caso de que la nota no fue encontrada, le decimos al usuario que hubo un error buscandola.
-        if (found == false) {
-          System.out.print("La materia que quiere modificar no existe o su nombre fue ingresado 0de forma incorrecta.");
+        System.out.print("Ingrese la nueva nota: ");
+        double newGrade = this.sc.nextDouble();
+        while (newGrade < 0 || newGrade > 20) {
+          System.out.print("Nota incorrecta fuera del rango aceptado... Ingrese de nuevo: ");
+          newGrade = this.sc.nextDouble();
         }
+        GradesManagement gradesToModify = studentToModify.getStudentGrades();
+        gradesToModify.getGrades().set(indexToModifyGrade, newGrade);
+        
         break;
       }
 

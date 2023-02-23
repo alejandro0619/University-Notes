@@ -5,29 +5,27 @@ import java.util.ArrayList;
 ;
 public class GradesManagement {
   private Scanner sc = new Scanner(System.in);
-  private ArrayList<Grades> grades = new ArrayList<Grades>();
+  private ArrayList<Double> grades = new ArrayList<Double>();
   private int size;
 
   public GradesManagement(int size) {
     this.size = size;
     for (int i = 0; i < size; i++) {
-      System.out.print("Materia: ");
-      String subject = this.sc.next();
-      System.out.print("Nota de la materia: ");
+      System.out.print((i + 1) + ". Nota: ");
       double grade = this.sc.nextDouble();
       while (grade < 0 || grade > 20) {
         System.out.println("La nota debe ser entre 0 y 20, ingrese de nuevo: ");
         grade = this.sc.nextDouble();
       }
       sc.nextLine();
-      grades.add(new Grades(subject, grade));
+      grades.add(grade);
     }
   }
   // Obtenemos el promedio.
   public double getAverage() {
     double sum = 0;
-    for (Grades grade : grades) {
-      sum += grade.getGrades();
+    for (double grade : grades) {
+      sum += grade;
     }
     return sum / grades.size();
   }
@@ -61,7 +59,7 @@ public class GradesManagement {
     this.size = size;
   }
 
-  public ArrayList<Grades> getGrades() {
+  public ArrayList<Double> getGrades() {
     return grades;
   }
   
@@ -69,9 +67,8 @@ public class GradesManagement {
     StringBuilder strBuilder = new StringBuilder();
     for (int i = 0; i < grades.size(); i++) {
       strBuilder.append(
-          "  " + (i + 1) + ".-" +
-          " Materia: " + grades.get(i).getSubject() +
-          " | Nota: " + grades.get(i).getGrades() + "\n"
+          "  " + (i + 1) +
+          ".- Nota: " + grades.get(i)+ "\n"
           );
     }
     strBuilder.append(
