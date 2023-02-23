@@ -65,10 +65,11 @@ public class Student {
   }
 
   public double getAverage() {
+    computeAverage();
     return average;
   }
 
-  public void computeAverage() {
+  private void computeAverage() {
     this.average =  this.grades.getAverage();
   }
 }

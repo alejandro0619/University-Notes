@@ -66,35 +66,43 @@ public class StudentWrapper implements MathLib<Student> {
   }
   @Override
   public ArrayList<Student> computeGreatest() {
-    ArrayList<Student> greatestGradesStudents = new ArrayList<Student>();
-
+    // Obtenemos el mayor promedio y su respectivo indice de estudiante
+    int indexOfGreatestAverage = 0;
+    double greatestAverage = 0;
+    ArrayList<Student> studentsByAverage = new ArrayList<Student>();
     for (int i = 0; i < this.array.size(); i++) {
-      double greatestGrade = 0;
-      Student currStudent = this.array.get(i);
-      currStudent.computeAverage(); // Sacamos el promedio del estudiante
-
-      // Y aqui todos los mejores estudiantes con mejor promedios
-      if (currStudent.getAverage() >= greatestGrade) {
-        greatestGradesStudents.add(currStudent);
+      if (this.array.get(i).getAverage() > greatestAverage) {
+        greatestAverage = this.array.get(i).getAverage();
+        indexOfGreatestAverage = i;
       }
     }
-    return greatestGradesStudents;
+    // Ya que tenemos el mayor promedio, vamos a ver si hay otro con el mismo promedio y lo agregamos al Dynamic Array
+    for (int i = 0; i < this.array.size(); i++) {
+      if (this.array.get(indexOfGreatestAverage).getAverage() == this.array.get(i).getAverage()) {
+        studentsByAverage.add(this.array.get(i));
+      }
+    }
+    return studentsByAverage;
   }
   @Override
   public ArrayList<Student> computeLowest() {
-    ArrayList<Student> lowestGradesStudents = new ArrayList<Student>();
-
+    // Obtenemos el mayor promedio y su respectivo indice de estudiante
+    int indexOfLowestAverage = 0;
+    double LowestAverage = 20;
+    ArrayList<Student> studentsByAverage = new ArrayList<Student>();
     for (int i = 0; i < this.array.size(); i++) {
-      double greatestGrade = 20;
-      Student currStudent = this.array.get(i);
-      currStudent.computeAverage(); // Sacamos el promedio del estudiante
-
-      // Y aqui todos los  estudiantes con peor promedios
-      if (currStudent.getAverage() <= greatestGrade) {
-        lowestGradesStudents.add(currStudent);
+      if (this.array.get(i).getAverage() < LowestAverage) {
+        LowestAverage = this.array.get(i).getAverage();
+        indexOfLowestAverage = i;
       }
     }
-    return lowestGradesStudents;
+    // Ya que tenemos el mayor promedio, vamos a ver si hay otro con el mismo promedio y lo agregamos al Dynamic Array
+    for (int i = 0; i < this.array.size(); i++) {
+      if (this.array.get(indexOfLowestAverage).getAverage() == this.array.get(i).getAverage()) {
+        studentsByAverage.add(this.array.get(i));
+      }
+    }
+    return studentsByAverage;
   }
 
   public void displayStadistics() {
@@ -103,15 +111,17 @@ public class StudentWrapper implements MathLib<Student> {
       System.out.print(
               "Nombre y apellido: " + bestStudent.getName() + " " + bestStudent.getLastName() +
               " con un promedio de: " + bestStudent.getAverage() + "\n"
-          );
+      );
     }
     
-    System.out.print("Los estudiantes con peor promedio son: \n");
-    for (Student bestStudent : this.computeGreatest()) {
+    System.out.print("\nLos estudiantes con peor promedio son: \n");
+    for (Student worstStudent : this.computeLowest()) {
       System.out.print(
-          "Nombre y apellido: " + bestStudent.getName() + " " + bestStudent.getLastName() +
-          " con un promedio de: " + bestStudent.getAverage() + "\n"
-          );
+          "Nombre y apellido: " + worstStudent.getName() + " " + worstStudent.getLastName() +
+          " con un promedio de: " + worstStudent.getAverage() + "\n"  + 
+          "su promedio americano es: " + worstStudent.getStudentGrades().getAmericanAverageNumber() + 
+          " y la letra obtenida es: " + worstStudent.getStudentGrades().computeAmericanGradeLetter() + "\n"
+      );
     }
 
   }
@@ -216,13 +226,18 @@ public class StudentWrapper implements MathLib<Student> {
         break;
       }
       case 5: {
+        // Obtenemos el índice de la nueva nota
+        // Comprobamos que sea un índice válido
         System.out.print("Ingrese la posición de la nota que quiere modificar: ");
-        int indexToModifyGrade = this.sc.nextInt();
+        int indexToModifyGrade = this.sc.nextInt() - 1;
+        // Obtenemos al estudiante que modificaremos
         Student studentToModify = this.array.get(indexToEdit);
         while (indexToModifyGrade < 0 || indexToModifyGrade > studentToModify.getStudentGrades().getSize()) {
           System.out.print("La nota no existe en esa posición... Ingrese de nuevo");
-          indexToModifyGrade = this.sc.nextInt();
+          indexToModifyGrade = this.sc.nextInt() - 1;
         }
+        // Pedimos la nueva nota
+        // Comporbamos que sea válida
         System.out.print("Ingrese la nueva nota: ");
         double newGrade = this.sc.nextDouble();
         while (newGrade < 0 || newGrade > 20) {
