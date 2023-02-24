@@ -104,9 +104,17 @@ public class StudentWrapper implements MathLib<Student> {
     }
     return studentsByAverage;
   }
-
+  @Override
+  public double computeGeneralAverage() {
+    double generalAverage = 0;
+    for (Student av : this.array) {
+      generalAverage = generalAverage + av.getAverage();
+    }
+    return generalAverage / this.array.size();
+  }
   public void displayStadistics() {
-    System.out.print("Los estudiantes con mejor promedio son: \n");
+    System.out.print("El promedio general es de: " + this.computeGeneralAverage() + "\n");
+    System.out.println("Los estudiantes con mejor promedio son: \n");
     for (Student bestStudent : this.computeGreatest()) {
       System.out.print(
               "Nombre y apellido: " + bestStudent.getName() + " " + bestStudent.getLastName() +

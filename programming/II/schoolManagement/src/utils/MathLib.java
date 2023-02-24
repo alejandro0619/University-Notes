@@ -4,5 +4,7 @@ public interface MathLib<T> {
 
   public ArrayList<T> computeLowest();
   
-  public  ArrayList<T> computeGreatest();
+  public ArrayList<T> computeGreatest();
+
+  public double computeGeneralAverage();
 }

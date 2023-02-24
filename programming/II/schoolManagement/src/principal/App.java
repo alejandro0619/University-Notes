@@ -9,17 +9,17 @@ import menu.MenuManagement;
     *  Sexo, 
     *  Notas.
  * Menu:
-    *  1. Agregar X cantidad de estudiantes.
-    *  2. Editar estudiantes
+    *  1. Agregar X cantidad de estudiantes. - done
+    *  2. Editar estudiantes - done
     *  3. Listado de estudiantes
-        3.1. Mostrará lista de estudiantes.
-        3.2. Deberá mostrar la nota americana.
-        3.3. Deberá mostrar la nota en letras.
+        3.1. Mostrará lista de estudiantes. - done
+        3.2. Deberá mostrar la nota americana. - done
+        3.3. Deberá mostrar la nota en letras. - done
     * 4. Estadística:
-    *  4.1. Promedio general del salón.
-        4.1.1 Nombre y apellido del estudiante.
-        4.1.2. En caso de tener 2 notas o 3 notas iguales, deberán ser mostradas por igual.
-    *  4.2. Promedio más bajo.
+    *  4.1. Promedio general del salón. - done
+        4.1.1 Nombre y apellido del estudiante. 
+        4.1.2. En caso de tener 2 notas o 3 notas iguales, deberán ser mostradas por igual. 
+    *  4.2. Promedio más bajo. - done
         4.2.1. Nombre y apellido del estudiante.
         4.2.2. En caso de haber 2 o 3 notas iguales. deberán ser mostradas por igual.
         4.2.3. Deberá mostrar la nota americana.
