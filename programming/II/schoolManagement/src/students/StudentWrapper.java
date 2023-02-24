@@ -86,7 +86,7 @@ public class StudentWrapper implements MathLib<Student> {
   }
   @Override
   public ArrayList<Student> computeLowest() {
-    // Obtenemos el mayor promedio y su respectivo indice de estudiante
+    // Obtenemos el menor promedio y su respectivo indice de estudiante
     int indexOfLowestAverage = 0;
     double LowestAverage = 20;
     ArrayList<Student> studentsByAverage = new ArrayList<Student>();
@@ -96,7 +96,7 @@ public class StudentWrapper implements MathLib<Student> {
         indexOfLowestAverage = i;
       }
     }
-    // Ya que tenemos el mayor promedio, vamos a ver si hay otro con el mismo promedio y lo agregamos al Dynamic Array
+    // Ya que tenemos el menor promedio, vamos a ver si hay otro con el mismo promedio y lo agregamos al Dynamic Array
     for (int i = 0; i < this.array.size(); i++) {
       if (this.array.get(indexOfLowestAverage).getAverage() == this.array.get(i).getAverage()) {
         studentsByAverage.add(this.array.get(i));
@@ -112,9 +112,49 @@ public class StudentWrapper implements MathLib<Student> {
     }
     return generalAverage / this.array.size();
   }
+  @Override
+  public ArrayList<Student> computeOldestStudent() {
+    // Obtenemos el estudiante con mayor edad y su indice en el ArrayList de estudiantes
+    int indexOfOldestStudent = 0;
+    int OldestAge = Integer.MIN_VALUE;
+    ArrayList<Student> studentsByAge = new ArrayList<Student>();
+    for (int i = 0; i < this.array.size(); i++) {
+      if (this.array.get(i).getAge() > OldestAge) {
+        OldestAge = this.array.get(i).getAge();
+        indexOfOldestStudent = i;
+      }
+    }
+    // Ya que tenemos el estudiante con mayor edad recorremos el ArrayList y comprobamos si hay otro y lo agregamos
+    for (int i = 0; i < this.array.size(); i++) {
+      if (this.array.get(indexOfOldestStudent).getAge() == this.array.get(i).getAge()) {
+        studentsByAge.add(this.array.get(i));
+      }
+    }
+    return studentsByAge;
+  }
+  @Override
+  public ArrayList<Student> computeYoungestStudent() {
+    // Obtenemos el estudiante con menor edad y su indice en el ArrayList de estudiantes
+    int indexOfYoungestStudent = 0;
+    int YoungestAge = Integer.MAX_VALUE;
+    ArrayList<Student> studentsByAge = new ArrayList<Student>();
+    for (int i = 0; i < this.array.size(); i++) {
+      if (this.array.get(i).getAge() < YoungestAge) {
+        YoungestAge = this.array.get(i).getAge();
+        indexOfYoungestStudent = i;
+      }
+    }
+    // Ya que tenemos el estudiante con menor edad recorremos el ArrayList y comprobamos si hay otro y lo agregamos
+    for (int i = 0; i < this.array.size(); i++) {
+      if (this.array.get(indexOfYoungestStudent).getAge() == this.array.get(i).getAge()) {
+        studentsByAge.add(this.array.get(i));
+      }
+    }
+    return studentsByAge;
+  }
   public void displayStadistics() {
     System.out.print("El promedio general es de: " + this.computeGeneralAverage() + "\n");
-    System.out.println("Los estudiantes con mejor promedio son: \n");
+    System.out.println("\n Los estudiantes con mejor promedio son: \n");
     for (Student bestStudent : this.computeGreatest()) {
       System.out.print(
               "Nombre y apellido: " + bestStudent.getName() + " " + bestStudent.getLastName() +
@@ -122,16 +162,33 @@ public class StudentWrapper implements MathLib<Student> {
       );
     }
     
-    System.out.print("\nLos estudiantes con peor promedio son: \n");
-    for (Student worstStudent : this.computeLowest()) {
+    System.out.print("Los estudiantes con peor promedio son: \n");
+    for (Student worstStudents : this.computeLowest()) {
       System.out.print(
-          "Nombre y apellido: " + worstStudent.getName() + " " + worstStudent.getLastName() +
-          " con un promedio de: " + worstStudent.getAverage() + "\n"  + 
-          "su promedio americano es: " + worstStudent.getStudentGrades().getAmericanAverageNumber() + 
-          " y la letra obtenida es: " + worstStudent.getStudentGrades().computeAmericanGradeLetter() + "\n"
+          "Nombre y apellido: " + worstStudents.getName() + " " + worstStudents.getLastName() +
+          " con un promedio de: " + worstStudents.getAverage() + "\n"  + 
+          "su promedio americano es: " + worstStudents.getStudentGrades().getAmericanAverageNumber() + 
+          " y la letra obtenida es: " + worstStudents.getStudentGrades().computeAmericanGradeLetter() + "\n"
       );
     }
+    
+    System.out.print("Los estudiantes con mayor edad son: \n");
+    for (Student oldestStudents : this.computeOldestStudent()) {
+      System.out.print(
+          "Nombre y apellido: " + oldestStudents.getName() + " " + oldestStudents.getLastName() +
+          "\nFecha de nacimiento: " + oldestStudents.getBirthDate() +
+          " Edad: " + +oldestStudents.getAge() + " años" + "\n");
+    }
+    
 
+    System.out.print("\nLos estudiantes con menor edad son: \n");
+    for (Student youngestStudents : this.computeYoungestStudent()) {
+      System.out.print(
+          "Nombre y apellido: " + youngestStudents.getName() + " " + youngestStudents.getLastName() +
+          "\nFecha de nacimiento: " + youngestStudents.getBirthDate() +
+          " Edad: " + + youngestStudents.getAge() + " años" + "\n"
+      );
+    }
   }
   public void displayStudents() {
     System.out.println("\nEstudiantes: \n"); // Caption :)
@@ -194,7 +251,6 @@ public class StudentWrapper implements MathLib<Student> {
       }
 
       case 3: {
-        System.out.print("Ingrese su nueva fecha de nacimiento en el siguiene formato: dd-mm-yyyy: ");
         BirthDate newBirth = new BirthDate(); // Nueva fecha
         Student studentToModify= this.array.get(indexToEdit); // Obtenemos el student a editar
         studentToModify.setBirthDate(newBirth); // Modificamos el field birthdate

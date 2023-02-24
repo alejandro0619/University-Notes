@@ -1,12 +1,13 @@
 package utils;
 
 import java.util.Scanner;
-
+import java.time.LocalDate;
 public class BirthDate {
   private Scanner sc = new Scanner(System.in);
   private int day;
   private int month;
   private int year;
+  private LocalDate birthdate;
 
   public BirthDate() {
     // Dia
@@ -70,6 +71,9 @@ public class BirthDate {
     this.year = year;
   }
 
+  public LocalDate getDate() {
+    return LocalDate.of(this.getYear(), this.getMonth(), this.getDay());
+  }
   @Override
   public String toString() {
     return  day + " - " + month + " - " + year;

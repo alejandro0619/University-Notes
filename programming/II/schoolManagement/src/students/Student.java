@@ -1,6 +1,8 @@
 package students;
 import grades.GradesManagement;
 import utils.BirthDate;
+import java.time.LocalDate;
+import java.time.Period;
 // enum for the two gender (and a third just for fun)...
 enum Gender {
   Male,
@@ -12,6 +14,7 @@ public class Student {
   private String name;
   private String lastName;
   private BirthDate birthDate;
+  private LocalDate age;
   private Gender gender;
   private GradesManagement grades;
   private double average;
@@ -48,6 +51,9 @@ public class Student {
     this.birthDate = birthDate;
   }
 
+  public int getAge() {
+    return Period.between(this.birthDate.getDate(), LocalDate.now()).getYears();
+  }
   public GradesManagement getStudentGrades() {
     return this.grades;
   }
