@@ -15,11 +15,11 @@ public class Client extends Person {
     System.out.print("Ingrese su cédula: ");
     this.ID = sc.nextLine();
 
-    System.out.print("Ingrese su sexo: Elija H o F: ");
+    System.out.print("Ingrese su sexo: Elija H o F. ");
     String gender = sc.next();
     // We check if the given letter is either F or H
     while (!gender.toLowerCase().equals("f") && !gender.toLowerCase().equals("h")) {
-      System.out.print("Incorrecto... Ingrese de nuevo: H o F: ");
+      System.out.print("Incorrecto... Ingrese de nuevo: H o F. ");
       gender = sc.next();
     }
     if (gender.toLowerCase().equals("h")) {
@@ -28,11 +28,11 @@ public class Client extends Person {
       this.Gender = Gender.Female;
     }
 
-    System.out.print("Ingrese su tipo de indentificación: Elija N o E: ");
+    System.out.print("Ingrese su tipo de indentificación: Elija N o E. ");
     String idType = sc.next();
     // We check if the given letter is either N or E
     while (!idType.toLowerCase().equals("e") && !idType.toLowerCase().equals("n")) {
-      System.out.print("Incorrecto... Ingrese de nuevo: N o E: ");
+      System.out.print("Incorrecto... Ingrese de nuevo: N o E. ");
       idType = sc.next();
     }
     if (idType.toLowerCase().equals("n")) {
