@@ -2,7 +2,7 @@ package lib.stockManagement;
 
 import java.util.Scanner;
 
-public class Product {
+public class Product  {
   private String Name;
   private double Price;
   private int Amount;
@@ -27,9 +27,29 @@ public class Product {
     }
   }
 
+  public Product(Product p) {
+    this.Name = p.getName();
+    this.Price = p.getPrice();
+    this.Amount = p.getAmount();
+  }
+  
   @Override
   public String toString() {
     return "Nombre: " + this.Name + ", Precio: " + this.Price + ", Cantidad: " + this.Amount ;
   }
-  
+
+  public String getName() {
+    return Name;
+  }
+
+  public double getPrice() {
+    return Price;
+  }
+  public int getAmount() {
+    return Amount;
+  }
+
+  public void setAmount(int amount) {
+    Amount = amount;
+  }
 }

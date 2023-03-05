@@ -2,9 +2,10 @@ package lib;
 
 import java.util.Scanner;
 import lib.clientManagement.ClientMenu;
+import lib.stockManagement.Stock;
 
 public class Menu {
-  public void render() {
+  public void render(Stock stock) {
     Scanner sc = new Scanner(System.in);
     int option = 0;
     do {
@@ -15,7 +16,7 @@ public class Menu {
       option = sc.nextInt();
       switch (option) {
         case 1: {
-          new ClientMenu().render();
+          new ClientMenu().render(stock);
           break;
         }
         case 2:

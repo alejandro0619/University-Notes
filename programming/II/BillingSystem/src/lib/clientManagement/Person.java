@@ -50,7 +50,8 @@ public class Person {
   }
 
   public String display() {
-    return "Nombre y apellido: " + this.getName() + " " + this.getLastName() + "\n" + 
+    return "\n- - - INFORMACIÓN DEL CLIENTE - - -\n" +
+           "Nombre y apellido: " + this.getName() + " " + this.getLastName() + "\n" + 
            "Correo: " + this.getEmail() + "\n" + "Dirección: " + this.getAddress() + "\n" +
            "Número celular: " + this.getPhoneNumber() + "\n";
   }

@@ -33,5 +33,7 @@ public class Stock {
     return str.toString();
   }
 
-  
+  public ArrayList<Product> getStock() {
+    return Stock;
+  }
 }
