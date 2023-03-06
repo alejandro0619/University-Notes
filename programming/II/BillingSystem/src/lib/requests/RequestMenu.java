@@ -5,13 +5,14 @@ import java.util.Scanner;
 import lib.stockManagement.Stock;
 
 public class RequestMenu {
+  Request req;
   public void render(Stock stock) {
     Scanner sc = new Scanner(System.in);
     boolean status = false;
-    Request req = new Request();
+    req = new Request();
     while (status == false) {
       System.out.print("\n- - - MENÚ DEL CLIENTE - - -\n");
-      System.out.print("(1) Agregar pedido\n(2) Visualizar pedido\n(3) Salir");
+      System.out.print("(1) Agregar productos\n(2) Visualizar pedido\n(3) Salir");
       System.out.print("\n- - - - - - - - - - - - - - -\n");
       System.out.print("Respuesta: ");
       int option = sc.nextInt();
@@ -32,5 +33,8 @@ public class RequestMenu {
           break;
       }
     }
+  }
+  public Request getReq() {
+    return req;
   }
 }

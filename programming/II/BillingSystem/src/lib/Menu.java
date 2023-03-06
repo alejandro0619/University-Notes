@@ -1,25 +1,27 @@
 package lib;
 
 import java.util.Scanner;
-import lib.clientManagement.ClientMenu;
+import lib.clientManagement.Client;
 import lib.stockManagement.Stock;
 
 public class Menu {
+  Client client = new Client();
   public void render(Stock stock) {
     Scanner sc = new Scanner(System.in);
     int option = 0;
     do {
       System.out.print("\n- - - MENU - - -\n");
-      System.out.print("(1) Agregar Cliente\n(2) Pedidos registrados\n(3) Estaísticas\n(4) Configuraciones\n(5) Salir");
+      System.out.print("(1) Agregar Cliente\n(2) Pedidos registrados\n(3) Estadísticas\n(4) Configuraciones\n(5) Salir");
       System.out.print("\n- - - - - - - - -\n");
       System.out.print("Opción: ");
       option = sc.nextInt();
       switch (option) {
         case 1: {
-          new ClientMenu().render(stock);
+          client.render(stock);
           break;
         }
         case 2:
+          client.displayRequests();
           break;
         case 3:
           break;
