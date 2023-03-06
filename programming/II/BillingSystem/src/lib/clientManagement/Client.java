@@ -87,7 +87,7 @@ public class Client {
       naturalCustomers.get(customer).getRequests().forEach((request) -> {
         request.show();
       });
-      System.out.print("Nombre del cliente y apellido: " + naturalCustomers.get(customer).getCustomer().toString() );
+      naturalCustomers.get(customer).getCustomer().toString();
       
     } else {
       System.out.print("\n- - - Seleccione el cliente - - -\n");
@@ -96,7 +96,14 @@ public class Client {
         System.out.print("Incorrecto... Ingrese una opción válida: ");
         customer = sc.nextInt();
       }
-      
+      // We generate the bill for the customer
+      System.out.print("\n- - - FACTURA - - -\n");
+      System.out.print("Número de factura: " + (customer + 1) + "\n");
+      System.out.print("- - - Productos agregados - - -\n");
+      bussinessCustomers.get(customer).getRequests().forEach((request) -> {
+        request.show();
+      });
+      bussinessCustomers.get(customer).getCustomer().toString();
     }
   }
 }

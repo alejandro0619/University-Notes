@@ -8,7 +8,7 @@ public class Stock {
 
   public Stock() {
     Scanner sc = new Scanner(System.in);
-    System.out.print("¿Qué cantidad de productos quiere ingresar? Respuesta: ");
+    System.out.print("¿Cuántos productos quiere precargar en el inventario? Respuesta: ");
     int size = sc.nextInt();
     while (size < 1) {
       System.out.print("Mínimo 10 productos para ser precargados en el inventario... Ingrese: ");
