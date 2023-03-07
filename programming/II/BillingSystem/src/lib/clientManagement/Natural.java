@@ -3,15 +3,15 @@ package lib.clientManagement;
 import lib.utils.*;
 import java.util.Scanner;
 
-public class Natural extends Person {
+public class Natural extends Client {
   private String Id;
   private Gender Gender;
   private IdType IdType;
 
+  
   public Natural() {
-    super();
+    super(true);
     Scanner sc = new Scanner(System.in);
-
     System.out.print("Ingrese su cédula: ");
     this.Id = sc.nextLine();
 
@@ -57,5 +57,13 @@ public class Natural extends Person {
   @Override
   public String toString() {
     return this.display() + "Cédula: " + this.getId() + "\n" + "Tipo de natural: " + this.getIdType();
+  }
+
+  @Override
+  public String display() {
+    return "\n- - - INFORMACIÓN DEL CLIENTE - - -\n" +
+           "Nombre y apellido: " + this.getName() + " " + this.getLastName() + "\n" + 
+           "Correo: " + this.getEmail() + "\n" + "Dirección: " + this.getAddress() + "\n" +
+           "Número celular: " + this.getPhoneNumber() + "\n";
   }
 }

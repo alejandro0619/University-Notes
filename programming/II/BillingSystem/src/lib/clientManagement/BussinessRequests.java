@@ -12,7 +12,7 @@ public class BussinessRequests {
     this.requests = requests;
   }
   public String getInfo() {
-    return customer.getName() + " " + customer.getLastName();
+    return "";
   }
   public ArrayList<Request> getRequests() {
     return requests;

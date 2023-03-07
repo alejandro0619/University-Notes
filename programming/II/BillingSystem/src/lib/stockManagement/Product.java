@@ -18,7 +18,7 @@ public class Product  {
       System.out.print("El precio no puede ser negativo... Ingrese de nuevo: ");
       this.Price = sc.nextDouble();
     }
-    System.out.print("ingrese la cantidad de " + this.Name + " que desea llevar: ");
+    System.out.print("ingrese la cantidad de " + this.Name + " que desea agregar: ");
     // we check the bounds
     this.Amount = sc.nextInt();
     while (this.Amount < 0) {

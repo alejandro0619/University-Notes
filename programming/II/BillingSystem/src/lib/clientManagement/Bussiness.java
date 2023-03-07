@@ -3,12 +3,12 @@ package lib.clientManagement;
 import java.util.Scanner;
 import lib.utils.IdType;
 
-public class Bussiness extends Person {
+public class Bussiness extends Client {
   private String Id;
   private IdType IdType;
 
   public Bussiness() {
-    super();
+    super(false);
     Scanner sc = new Scanner(System.in);
 
     System.out.print("Ingrese su RIF: ");
@@ -38,5 +38,13 @@ public class Bussiness extends Person {
   @Override
   public String toString() {
     return this.display() + "RIF: " + this.getId() + "\n" +"Tipo de jurídico: " + this.getIdType();
+  }
+
+  @Override
+  public String display() {
+    return "\n- - - INFORMACIÓN DEL CLIENTE - - -\n" +
+           "Razón social:" + this.getName() + "\n" + 
+           "Correo: " + this.getEmail() + "\n" + "Dirección: " + this.getAddress() + "\n" +
+           "Número celular: " + this.getPhoneNumber() + "\n";
   }
 }
