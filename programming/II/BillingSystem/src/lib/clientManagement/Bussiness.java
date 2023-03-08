@@ -18,7 +18,7 @@ public class Bussiness extends Client {
     String idType = sc.next();
     // We check if the given letter is either N or E
     while (!idType.toLowerCase().equals("j") && !idType.toLowerCase().equals("g")) {
-      System.out.print("Incorrecto... Ingrese de nuevo: N o E. ");
+      System.out.print("Incorrecto... Ingrese de nuevo: J o G. ");
       idType = sc.next();
     }
     if (idType.toLowerCase().equals("j")) {

@@ -48,4 +48,12 @@ public class Request {
       }
     }
   }
+
+  public double getTotalPrice() {
+    double totalPrice = 0;
+    for (Product prod : products) {
+      totalPrice = totalPrice + prod.getPrice();
+    }
+    return totalPrice;
+  }
 }
