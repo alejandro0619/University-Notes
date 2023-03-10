@@ -23,5 +23,14 @@ public class NaturalRequests {
   public Natural getCustomer() {
     return customer;
   }
-  
+  // Request with most amount of products
+  public Request getMostSoldRequest() {
+    Request mostSold = requests.get(0);
+    for (Request req : requests) {
+      if (req.getMostSold().getAmount() > mostSold.getMostSold().getAmount()) {
+        mostSold = req;
+      }
+    }
+    return mostSold;
+  }
 }

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public abstract class Client {
   private String Name;
-  // make a private field lastname and make it optional
   private String LastName;
 
   private String Address;

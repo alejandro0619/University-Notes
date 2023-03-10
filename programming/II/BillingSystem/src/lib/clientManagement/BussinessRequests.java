@@ -20,4 +20,13 @@ public class BussinessRequests {
   public Bussiness getCustomer() {
     return customer;
   }
+  public Request getMostSoldRequest() {
+    Request mostSold = requests.get(0);
+    for (Request req : requests) {
+      if (req.getMostSold().getAmount() > mostSold.getMostSold().getAmount()) {
+        mostSold = req;
+      }
+    }
+    return mostSold;
+  }
 }

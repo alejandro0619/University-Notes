@@ -56,4 +56,14 @@ public class Request {
     }
     return totalPrice;
   }
+
+  public Product getMostSold() {
+    Product mostSold = products.get(0);
+    for (Product prod : products) {
+      if (prod.getAmount() > mostSold.getAmount()) {
+        mostSold = prod;
+      }
+    }
+    return mostSold;
+  } 
 }

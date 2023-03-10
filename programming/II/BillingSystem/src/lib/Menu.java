@@ -43,7 +43,6 @@ public class Menu {
           client.getTotalByGender(exchange.getExchange());
           // Total sold by id type
           client.RequestsByTypeOfId();
-
           break;
         }
         case 4: {

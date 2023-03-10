@@ -5,13 +5,15 @@ import java.util.ArrayList;
 
 import lib.requests.Request;
 import lib.requests.RequestWrapper;
+import lib.stockManagement.Product;
 import lib.stockManagement.Stock;
 import lib.utils.Gender;
 import lib.utils.IdType;
+
 /*
  * Inner menu to add products.
  */
-public class ClientMenu  {
+public class ClientMenu {
   ArrayList<NaturalRequests> naturalCustomers = new ArrayList<NaturalRequests>();
   ArrayList<BussinessRequests> bussinessCustomers = new ArrayList<BussinessRequests>();
 
@@ -66,11 +68,11 @@ public class ClientMenu  {
         j = j + 1;
       }
     }
-    
+
     System.out.println("\n- - - CLIENTES JURÍDICOS - - -");
     for (int i = 0; i < bussinessCustomers.size(); i++) {
       // We generate the bill for the customer
-      for(Request req : bussinessCustomers.get(i).getRequests()) {
+      for (Request req : bussinessCustomers.get(i).getRequests()) {
         System.out.print("\n- - - FACTURA - - -\n");
         System.out.print("Número de factura: 0000" + (j + 1) + "\n");
         System.out.println(bussinessCustomers.get(i).getCustomer().toString());
@@ -80,7 +82,7 @@ public class ClientMenu  {
 
     }
   }
-  
+
   public void getTotal() {
     int naturalTotalRequests = 0;
     int bussinessTotalRequests = 0;
@@ -153,21 +155,56 @@ public class ClientMenu  {
         bussinessGov.add(bussinessCustomer);
       }
     }
-    System.out.println("\nLos productos que compraron los naturales venezolanos:");
-    for (NaturalRequests natural : naturalVenezuelans) {
-      natural.getRequests().forEach(req -> req.show());
+
+    if (naturalVenezuelans.size() == 0) {
+      System.out.println("No hay clientes venezolanos agregados...");
+    } else {
+      // get the product most sold for venezuelans
+      Product mostSoldVenezuelans = naturalVenezuelans.get(0).getMostSoldRequest().getMostSold();
+      for (NaturalRequests natural : naturalVenezuelans) {
+        if (natural.getMostSoldRequest().getMostSold().getAmount() > mostSoldVenezuelans.getAmount()) {
+          mostSoldVenezuelans = natural.getMostSoldRequest().getMostSold();
+        }
+      }
+      System.out.print("El producto mas vendido a clientes naturales venezolanos es:" + mostSoldVenezuelans.getName() + "\n");
     }
-    System.out.println("\nLos productos que compraron los naturales extranjeros:");
-    for (NaturalRequests natural : naturalForeigners) {
-      natural.getRequests().forEach(req -> req.show());
+
+    if (naturalForeigners.size() == 0) {
+      System.out.println("No hay clientes extranjeros agregados...");
+    } else {
+      // get the product most sold for foreigners
+      Product mostSoldForeigners = naturalForeigners.get(0).getMostSoldRequest().getMostSold();
+      for (NaturalRequests natural : naturalForeigners) {
+        if (natural.getMostSoldRequest().getMostSold().getAmount() > mostSoldForeigners.getAmount()) {
+          mostSoldForeigners = natural.getMostSoldRequest().getMostSold();
+        }
+      }
+      System.out.print("El producto mas vendido a clientes naturales extranjeros es:" + mostSoldForeigners.getName() + "\n");
     }
-    System.out.println("\nLos productos que compraron los jurídicos: \n");
-    for (BussinessRequests bussinessCustomer : bussiness) {
-      bussinessCustomer.getRequests().forEach(req -> req.show());
+
+    if (bussiness.size() == 0) {
+      System.out.println("No hay clientes jurídicos agregados...");
+    } else {
+      // get the most sold product for business customers
+      Product mostSoldBussiness = bussiness.get(0).getMostSoldRequest().getMostSold();
+      for (BussinessRequests bussinessCustomer : bussiness) {
+        if (bussinessCustomer.getMostSoldRequest().getMostSold().getAmount() > mostSoldBussiness.getAmount()) {
+          mostSoldBussiness = bussinessCustomer.getMostSoldRequest().getMostSold();
+        }
+      }
+      System.out.print("El producto mas vendido a clientes jurídicos es:" + mostSoldBussiness.getName() + "\n");
     }
-    System.out.println("Los productos que compraron los jurídicos del gobierno: \n");
-    for (BussinessRequests bussinessCustomer : bussinessGov) {
-      bussinessCustomer.getRequests().forEach(req -> req.show());
+    if (bussinessGov.size() == 0) {
+      System.out.println("No hay clientes jurídicos gubernamentales agregados...");
+    } else {
+      Product mostSoldBussinessGov = bussinessGov.get(0).getMostSoldRequest().getMostSold();
+      for (BussinessRequests bussinessCustomer : bussinessGov) {
+        if (bussinessCustomer.getMostSoldRequest().getMostSold().getAmount() > mostSoldBussinessGov.getAmount()) {
+          mostSoldBussinessGov = bussinessCustomer.getMostSoldRequest().getMostSold();
+        }
+      }
+      System.out
+          .print("El producto mas vendido a clientes jurídicos del gobierno es:" + mostSoldBussinessGov.getName() + "\n");
     }
   }
 }
