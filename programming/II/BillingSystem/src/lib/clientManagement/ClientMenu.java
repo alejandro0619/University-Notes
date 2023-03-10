@@ -99,9 +99,9 @@ public class ClientMenu {
     for (BussinessRequests bussinessCustomer : bussinessCustomers) {
       bussinessTotalRequests += bussinessCustomer.getRequests().size();
     }
-    System.out.println("Total de pedidos de clientes naturales: " + naturalTotalRequests);
-    System.out.println("Total de pedidos de clientes jurídicos: " + bussinessTotalRequests);
-    System.out.println("Total de pedidos: " + (naturalTotalRequests + bussinessTotalRequests));
+    System.out.println("Total de ventas de clientes naturales: " + naturalTotalRequests);
+    System.out.println("Total de ventas de clientes jurídicos: " + bussinessTotalRequests);
+    System.out.println("Total de ventas: " + (naturalTotalRequests + bussinessTotalRequests));
   }
   
   /*
@@ -137,7 +137,10 @@ public class ClientMenu {
    */
   public void getTotalByGender(double exchange) {
     ArrayList<NaturalRequests> naturalWomen = new ArrayList<NaturalRequests>();
+    int totalRequestWoman = 0;
     ArrayList<NaturalRequests> naturalMen = new ArrayList<NaturalRequests>();
+    int totalRequestMen = 0;
+
     for (NaturalRequests natural : naturalCustomers) {
       if (natural.getCustomer().getGender() == Gender.Female) {
         naturalWomen.add(natural);
@@ -145,8 +148,16 @@ public class ClientMenu {
         naturalMen.add(natural);
       }
     }
-    System.out.println("Total de clientes naturales mujeres: " + naturalWomen.size());
-    System.out.println("Total de clientes naturales hombres: " + naturalMen.size());
+    for(NaturalRequests naturalWoman : naturalWomen) {
+      totalRequestWoman += naturalWoman.getRequests().size();
+    }
+    for(NaturalRequests naturalMan : naturalMen) {
+      totalRequestMen += naturalMan.getRequests().size();
+    }
+    System.out.println("Total de clientes naturales mujeres: " + naturalWomen.size() + " Con un total de ventas de: " + totalRequestWoman);
+    System.out.println("Total de clientes naturales hombres: " + naturalMen.size() + " Con un total de ventas de: " + totalRequestMen);
+    
+    
   }
   
   /*
@@ -183,7 +194,7 @@ public class ClientMenu {
           mostSoldVenezuelans = natural.getMostSoldRequest().getMostSold();
         }
       }
-      System.out.print("El producto mas vendido a clientes naturales venezolanos es:" + mostSoldVenezuelans.getName() + "\n");
+      System.out.print("El producto mas vendido a clientes naturales venezolanos es: " + mostSoldVenezuelans.getName() + "\n");
     }
 
     if (naturalForeigners.size() == 0) {
@@ -196,7 +207,7 @@ public class ClientMenu {
           mostSoldForeigners = natural.getMostSoldRequest().getMostSold();
         }
       }
-      System.out.print("El producto mas vendido a clientes naturales extranjeros es:" + mostSoldForeigners.getName() + "\n");
+      System.out.print("El producto mas vendido a clientes naturales extranjeros es: " + mostSoldForeigners.getName() + "\n");
     }
 
     if (bussiness.size() == 0) {
@@ -209,7 +220,7 @@ public class ClientMenu {
           mostSoldBussiness = bussinessCustomer.getMostSoldRequest().getMostSold();
         }
       }
-      System.out.print("El producto mas vendido a clientes jurídicos es:" + mostSoldBussiness.getName() + "\n");
+      System.out.print("El producto mas vendido a clientes jurídicos es: " + mostSoldBussiness.getName() + "\n");
     }
     if (bussinessGov.size() == 0) {
       System.out.println("No hay clientes jurídicos gubernamentales agregados...");
@@ -221,7 +232,7 @@ public class ClientMenu {
         }
       }
       System.out
-          .print("El producto mas vendido a clientes jurídicos del gobierno es:" + mostSoldBussinessGov.getName() + "\n");
+          .print("El producto mas vendido a clientes jurídicos del gobierno es: " + mostSoldBussinessGov.getName() + "\n");
     }
   }
 }
