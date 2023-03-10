@@ -25,6 +25,10 @@ public class Request {
 
     System.out.print("¿Qué cantidad de " + currentProduct.getName() + " quiere?\nRespuesta: ");
     int amount = sc.nextInt();
+    if( currentProduct.getAmount() == 0 ) {
+      System.out.print("No hay elementos disponibles...");
+      return;
+    } 
     while (amount < 0 || amount > currentProduct.getAmount()) {
       System.out.print("Cantidad incorrecta... Ingrese de nuevo: ");
       amount = sc.nextInt();
@@ -52,7 +56,7 @@ public class Request {
   public double getTotalPrice() {
     double totalPrice = 0;
     for (Product prod : products) {
-      totalPrice = totalPrice + prod.getPrice();
+      totalPrice = totalPrice + prod.getPrice() * prod.getAmount();
     }
     return totalPrice;
   }

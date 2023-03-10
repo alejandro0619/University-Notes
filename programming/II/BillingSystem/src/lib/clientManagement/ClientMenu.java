@@ -120,7 +120,7 @@ public class ClientMenu {
 
     for (NaturalRequests naturalCustomer : naturalCustomers) {
       for (Request req : naturalCustomer.getRequests()) {
-        naturalTotalSold += req.getTotalPrice();
+        naturalTotalSold += req.getTotalPrice() ;
       }
     }
     for (BussinessRequests bussinessCustomer : bussinessCustomers) {
