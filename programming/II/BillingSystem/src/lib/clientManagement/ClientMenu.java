@@ -11,7 +11,7 @@ import lib.utils.Gender;
 import lib.utils.IdType;
 
 /*
- * Inner menu to add products.
+ * Inner menu to add products and display stadistics
  */
 public class ClientMenu {
   ArrayList<NaturalRequests> naturalCustomers = new ArrayList<NaturalRequests>();
@@ -54,6 +54,9 @@ public class ClientMenu {
     }
   }
 
+  /*
+  * It displays the bill with the information of the client and the request
+  */
   public void displayRequests() {
     Scanner sc = new Scanner(System.in);
     int j = 0; // It will be used to generate the bill number
@@ -82,7 +85,10 @@ public class ClientMenu {
 
     }
   }
-
+  //////// STADISTICS ////////
+  /*
+   * Get total of requests by customers and the total of requests in general
+   */
   public void getTotal() {
     int naturalTotalRequests = 0;
     int bussinessTotalRequests = 0;
@@ -97,12 +103,17 @@ public class ClientMenu {
     System.out.println("Total de pedidos de clientes jurídicos: " + bussinessTotalRequests);
     System.out.println("Total de pedidos: " + (naturalTotalRequests + bussinessTotalRequests));
   }
-
+  
+  /*
+   * Get the total of customers
+   */
   public void getCustomers() {
     System.out.println("Total de clientes naturales: " + naturalCustomers.size());
     System.out.println("Total de clientes jurídicos: " + bussinessCustomers.size());
   }
-
+  /*
+   * Get the total sold in $ and Bs
+   */
   public void getTotalSold(double exchange) {
     double naturalTotalSold = 0;
     double bussinessTotalSold = 0;
@@ -120,7 +131,10 @@ public class ClientMenu {
     System.out.println("Total de ventas en Dólares: " + (naturalTotalSold + bussinessTotalSold));
     System.out.println("Total de ventas en Bolívares: " + ((naturalTotalSold + bussinessTotalSold) * exchange));
   }
-
+  
+  /*
+   * Get how many male and female bought products
+   */
   public void getTotalByGender(double exchange) {
     ArrayList<NaturalRequests> naturalWomen = new ArrayList<NaturalRequests>();
     ArrayList<NaturalRequests> naturalMen = new ArrayList<NaturalRequests>();
@@ -134,7 +148,10 @@ public class ClientMenu {
     System.out.println("Total de clientes naturales mujeres: " + naturalWomen.size());
     System.out.println("Total de clientes naturales hombres: " + naturalMen.size());
   }
-
+  
+  /*
+   * Get which product was the most sold between venezuelans, foreigners, business and gov
+   */
   public void RequestsByTypeOfId() {
     ArrayList<NaturalRequests> naturalVenezuelans = new ArrayList<NaturalRequests>();
     ArrayList<NaturalRequests> naturalForeigners = new ArrayList<NaturalRequests>();
