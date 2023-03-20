@@ -8,6 +8,7 @@ public class Menu {
     System.out.print("- - - MENU - - -\n");
     int option = 0;
     FileHandler fh = null;
+    Parser sh = null;
     do {
       System.out.println(" (1) Crear archivo e ingresar palabras");
       System.out.println(" (2) Estadísticas del archivo");
@@ -25,14 +26,18 @@ public class Menu {
           break;
         }
         case 2:
-          System.out.println("Estadísticas del archivo");
-          // Scan the file and get the statistics such as the number of words
-          SearchHandler sh = new SearchHandler(fh.getPath());
-          System.out.println("Número de palabras: " + sh.getWordsAmount());
-          sh.showWordsWithCount();
+          System.out.println("- - - ESTADÍSTICAS DEL ARCHIVO - - -");
+          // Scan the file and get the statistics such as the number of words, 
+          // the total of words (except the ones that are repeated) 
+          // and the most used words.
+          sh = new Parser(fh.getPath());
+          System.out.println("Número de palabras : " + sh.getWordsAmount());
+          System.out.println("Número de palabras total : " + sh.getTotalWords());
+          sh.showMostUsedWords();
           break;
         case 3:
-          System.out.println("Estadísticas generales");
+          System.out.println("- - - ESTADÍSTICAS GENERALES - - -");
+          sh.showWordsWithCount();
           break;
         case 4:
           System.out.println("Saliendo...");
