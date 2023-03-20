@@ -15,12 +15,18 @@ public class Parser {
 
   public Parser(String path) throws IOException {
     try {
+      // Opens the file and reads it line by line
+      // Then splits the line into words and adds them to the hashmap
+      // It uses the SanitizeString class to remove the punctuation, exclamation and question marks from the String
+      // It used to cause an unexpected behavior because same word with different punctuation marks were considered different words
+      // If the word already exists, it adds 1 to the value
+      // If it doesn't exist, it adds it to the hashmap with a value of 1
+      // Finally, it adds the amount of words in the line to the totalWords variable
       Scanner sc = new Scanner(new File(path));
       while (sc.hasNextLine()) {
         String line = sc.nextLine();
         String[] wordsInLine = line.split(" ");
         for (String word : wordsInLine) {
-          // Sanitize the word and then add it to the hashmap if it doesn't exist
           word = new SanitizeString(word).getSanitized();
           if (Words.containsKey(word)) {
             Words.put(word, Words.get(word) + 1);
@@ -42,13 +48,12 @@ public class Parser {
   public int getTotalWords() {
     return totalWords;
   }
-  // What are the most used words?
+  // Sorts the hashmap by value and returns the most frequent word
   public void showMostUsedWords() {
-    // loop through the hashmap and show the MOST used words
     new Sort(Words).showMostFrequent();
   }
+  // Shows the hashmap without sorting it
   public void showWordsWithCount() {
-    /// loop through the hashmap and print the key and value
     System.out.println("Palabras con su cantidad de repeticiones:");
     for (String word : Words.keySet()) {
       System.out.println(word + " = " + Words.get(word));

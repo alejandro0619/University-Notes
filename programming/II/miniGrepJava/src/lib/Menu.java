@@ -17,14 +17,14 @@ public class Menu {
       System.out.println("Ingrese una opción: ");
       option = scanner.nextInt();
       switch (option) {
-        case 1: {
+        case 1: 
           System.out.print("Ingrese el nombre del archivo: ");
           String fileName = scanner.next();
             // Once we create the file we need to write in it.
             fh = new FileHandler(fileName);
             fh.write();
-          break;
-        }
+            break;
+          
         case 2:
           System.out.println("- - - ESTADÍSTICAS DEL ARCHIVO - - -");
           // Scan the file and get the statistics such as the number of words, 
@@ -35,13 +35,16 @@ public class Menu {
           System.out.println("Número de palabras total : " + sh.getTotalWords());
           sh.showMostUsedWords();
           break;
+
         case 3:
           System.out.println("- - - ESTADÍSTICAS GENERALES - - -");
           sh.showWordsWithCount();
           break;
+
         case 4:
           System.out.println("Saliendo...");
           break;
+          
         default:
           System.out.println("Opción inválida");
           break;
