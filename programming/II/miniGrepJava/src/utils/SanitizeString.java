@@ -7,7 +7,7 @@ public class SanitizeString {
   public SanitizeString(String str) {
     this.raw = str;
     // sanitize any punctuation marks, and exclamations, and question marks
-    this.sanitized = this.raw.replaceAll("[^\\w\\s]+", "");
+    this.sanitized = this.raw.replaceAll("[^\\w\\s]+", "").toLowerCase();
   }
 
   public String getRaw() {

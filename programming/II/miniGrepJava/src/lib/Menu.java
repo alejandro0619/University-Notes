@@ -7,10 +7,10 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     System.out.print("- - - MENU - - -\n");
     int option = 0;
-    FileHandler fh = null;
+    InputHandler fh = null;
     Parser sh = null;
     do {
-      System.out.println(" (1) Crear archivo e ingresar palabras");
+      System.out.println(" (1) Buscador de palabras");
       System.out.println(" (2) Estadísticas del archivo");
       System.out.println(" (3) Estadísticas generales");
       System.out.println(" (4) Salir");
@@ -20,9 +20,9 @@ public class Menu {
         case 1: 
           System.out.print("Ingrese el nombre del archivo: ");
           String fileName = scanner.next();
-            // Once we create the file we need to write in it.
-            fh = new FileHandler(fileName);
-            fh.write();
+            // Once we create the file is created or found we asks for the words to search
+            fh = new InputHandler(fileName);
+            fh.requestWords();
             break;
           
         case 2:
@@ -38,7 +38,7 @@ public class Menu {
 
         case 3:
           System.out.println("- - - ESTADÍSTICAS GENERALES - - -");
-          sh.showWordsWithCount();
+          fh.searchWords();
           break;
 
         case 4:

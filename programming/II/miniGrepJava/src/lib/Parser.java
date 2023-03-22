@@ -52,11 +52,12 @@ public class Parser {
   public void showMostUsedWords() {
     new Sort(Words).showMostFrequent();
   }
-  // Shows the hashmap without sorting it
-  public void showWordsWithCount() {
-    System.out.println("Palabras con su cantidad de repeticiones:");
-    for (String word : Words.keySet()) {
-      System.out.println(word + " = " + Words.get(word));
+  // Shows the given words and the amount of times they appear
+  public void showWordsWithCount(String word) {
+    if (this.Words.containsKey(word)) {
+      System.out.println(word + " aparece " + this.Words.get(word) + " veces");
+    } else {
+      System.out.println("La palabra(s) \"" + word + "\" no se encuentra en el archivo");
     }
   }
 }
