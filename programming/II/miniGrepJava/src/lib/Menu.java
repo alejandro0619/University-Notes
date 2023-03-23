@@ -30,6 +30,10 @@ public class Menu {
           // Scan the file and get the statistics such as the number of words, 
           // the total of words (except the ones that are repeated) 
           // and the most used words.
+          if (fh == null) {
+            System.out.println("No se ha ingresado ningún archivo");
+            break;
+          }
           sh = new Parser(fh.getPath());
           System.out.println("Número de palabras total : " + sh.getTotalWords());
           sh.showMostUsedWords();
@@ -37,6 +41,10 @@ public class Menu {
 
         case 3:
           System.out.println("- - - ESTADÍSTICAS GENERALES - - -");
+          if (fh == null) {
+            System.out.println("No se ha ingresado ningún archivo");
+            break;
+          }
           fh.searchWords();
           break;
 

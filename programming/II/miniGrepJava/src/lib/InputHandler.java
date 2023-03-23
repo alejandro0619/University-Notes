@@ -74,9 +74,13 @@ public class InputHandler {
      * Search the words in the file and show how many times they appear
      * In case the word is not found, show a message
      */
-
+    if (this.wordsToSearch.isEmpty()) {
+      System.out.println("No se ha ingresado texto");
+      return;
+    }
     this.wordsToSearch.forEach(word -> {
       System.out.print("Buscando \"" + word + "\"...");
+      
       try {
         new Parser(this.path).showWordsWithCount(word);
       } catch (IOException e) {
