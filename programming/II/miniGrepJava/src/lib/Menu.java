@@ -31,7 +31,6 @@ public class Menu {
           // the total of words (except the ones that are repeated) 
           // and the most used words.
           sh = new Parser(fh.getPath());
-          System.out.println("Número de palabras : " + sh.getWordsAmount());
           System.out.println("Número de palabras total : " + sh.getTotalWords());
           sh.showMostUsedWords();
           break;
