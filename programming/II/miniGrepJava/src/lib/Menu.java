@@ -2,6 +2,8 @@ package lib;
 
 import java.util.Scanner;
 
+import utils.FindPunctChars;
+
 public class Menu {
   public Menu() throws Exception {
     Scanner scanner = new Scanner(System.in);
@@ -37,6 +39,7 @@ public class Menu {
           sh = new Parser(fh.getPath());
           System.out.println("Número de palabras total : " + sh.getTotalWords());
           sh.showMostUsedWords();
+          new FindPunctChars(fh.getPath()).show();
           break;
 
         case 3:
