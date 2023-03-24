@@ -4,8 +4,6 @@ public class SanitizeString {
   private String raw;
   private String sanitized;
 
-  
-
   public SanitizeString(String str) {
     this.raw = str;
     // sanitize any punctuation marks, and exclamations, and question marks

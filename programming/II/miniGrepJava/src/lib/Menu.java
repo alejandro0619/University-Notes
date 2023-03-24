@@ -9,8 +9,8 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     System.out.print("- - - MENU - - -\n");
     int option = 0;
-    InputHandler fh = null;
-    Parser sh = null;
+    InputHandler Fh = null;
+    Parser Sh = null;
     do {
       System.out.println(" (1) Buscador de palabras");
       System.out.println(" (2) Estadísticas del archivo");
@@ -23,8 +23,8 @@ public class Menu {
           System.out.print("Ingrese el nombre del archivo: ");
           String fileName = scanner.next();
             // Once we create the file is created or found we asks for the words to search
-            fh = new InputHandler(fileName);
-            fh.requestWords();
+            Fh = new InputHandler(fileName);
+            Fh.requestWords();
             break;
           
         case 2:
@@ -32,23 +32,23 @@ public class Menu {
           // Scan the file and get the statistics such as the number of words, 
           // the total of words (except the ones that are repeated) 
           // and the most used words.
-          if (fh == null) {
+          if (Fh == null) {
             System.out.println("No se ha ingresado ningún archivo");
             break;
           }
-          sh = new Parser(fh.getPath());
-          System.out.println("Número de palabras total : " + sh.getTotalWords());
-          sh.showMostUsedWords();
-          new FindPunctChars(fh.getPath()).show();
+          Sh = new Parser(Fh.getPath());
+          System.out.println("Número de palabras total : " + Sh.getTotalWords());
+          Sh.showMostUsedWords();
+          new FindPunctChars(Fh.getPath()).show();
           break;
 
         case 3:
           System.out.println("- - - ESTADÍSTICAS GENERALES - - -");
-          if (fh == null) {
+          if (Fh == null) {
             System.out.println("No se ha ingresado ningún archivo");
             break;
           }
-          fh.searchWords();
+          Fh.searchWords();
           break;
 
         case 4:

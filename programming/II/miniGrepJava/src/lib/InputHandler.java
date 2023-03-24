@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class InputHandler {
   private String path;
-  private ArrayList<String> wordsToSearch = new ArrayList<String>();
+  private ArrayList<String> WordsToSearch = new ArrayList<String>();
 
   public String getPath() {
     return path;
@@ -54,11 +54,11 @@ public class InputHandler {
         }
         if (txt.split(" ").length > 1) {
           for (String word : txt.split(" ")) {
-            this.wordsToSearch.add(word.toLowerCase());
+            this.WordsToSearch.add(word.toLowerCase());
           }
           continue;
         }
-        this.wordsToSearch.add(txt.toLowerCase());
+        this.WordsToSearch.add(txt.toLowerCase());
       } else if (op == 2) {
         status = false;
       } else {
@@ -72,11 +72,11 @@ public class InputHandler {
      * Search the words in the file and show how many times they appear
      * In case the word is not found, show a message
      */
-    if (this.wordsToSearch.isEmpty()) {
+    if (this.WordsToSearch.isEmpty()) {
       System.out.println("No se ha ingresado texto");
       return;
     }
-    this.wordsToSearch.forEach(word -> {
+    this.WordsToSearch.forEach(word -> {
       System.out.print("Buscando \"" + word + "\"...");
       
       try {

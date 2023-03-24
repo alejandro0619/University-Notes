@@ -6,18 +6,17 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class FindPunctChars {
-  
 
-  private Character[] punctMarks = {
+  private Character[] PunctMarks = {
     '!', '?', ',', '.', ';', ':', '"', '(', ')',
     '[', ']', '{', '}', '<', '>', '/', '\\', '|',
     '_', '-', '+', '=', '*', '&', '^', '%', '$',
     '#', '@', '~', '`', '¡', '¿'
   };
-  private HashMap<String, Integer> punctChars = new HashMap<>();
+  private HashMap<String, Integer> PunctChars = new HashMap<>();
 
   public HashMap<String, Integer> getPunctChars() {
-    return punctChars;
+    return PunctChars;
   }
   
   /*
@@ -33,12 +32,12 @@ public class FindPunctChars {
       while (sc.hasNextLine()) {
         String line = sc.nextLine();
         for (char c : line.trim().toCharArray()) {
-          for (char pm : punctMarks) {
+          for (char pm : PunctMarks) {
             if (c == pm) {
-              if (punctChars.containsKey(String.valueOf(pm))) {
-                punctChars.put(String.valueOf(pm), punctChars.get(String.valueOf(pm)) + 1);
+              if (PunctChars.containsKey(String.valueOf(pm))) {
+                PunctChars.put(String.valueOf(pm), PunctChars.get(String.valueOf(pm)) + 1);
               } else {
-                punctChars.put(String.valueOf(pm), 1);
+                PunctChars.put(String.valueOf(pm), 1);
               }
               continue;
             }
@@ -51,8 +50,8 @@ public class FindPunctChars {
     }
   }
   public void show() {
-    for (String key : punctChars.keySet()) {
-      System.out.println(key + " aparece " + punctChars.get(key) + " veces");
+    for (String key : PunctChars.keySet()) {
+      System.out.println(key + " aparece " + PunctChars.get(key) + " veces");
     }
   }
 }
