@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import utils.SanitizeString;
-
 public class InputHandler {
   private String path;
   private ArrayList<String> wordsToSearch = new ArrayList<String>();
@@ -56,11 +54,11 @@ public class InputHandler {
         }
         if (txt.split(" ").length > 1) {
           for (String word : txt.split(" ")) {
-            this.wordsToSearch.add(new SanitizeString(word).getSanitized());
+            this.wordsToSearch.add(word.toLowerCase());
           }
           continue;
         }
-        this.wordsToSearch.add(new SanitizeString(txt).getSanitized());
+        this.wordsToSearch.add(txt.toLowerCase());
       } else if (op == 2) {
         status = false;
       } else {

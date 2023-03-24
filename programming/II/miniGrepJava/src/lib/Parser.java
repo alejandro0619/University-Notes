@@ -11,6 +11,8 @@ import utils.*;
 public class Parser {
   private long totalWords = 0;
   private HashMap<String, Integer> Words = new HashMap<String, Integer>();
+  private HashMap<String, Integer> punctChars = new HashMap<>();
+  
   private long EmptyLines = 0;
 
   public Parser(String path) throws IOException {
@@ -28,18 +30,29 @@ public class Parser {
         String[] wordsInLine = line.split(" ");
 
         for (String word : wordsInLine) {
+          String charFound = new SanitizeString(word).getPunctChar();
           word = new SanitizeString(word).getSanitized();
+
           if (word.isEmpty()) {
             EmptyLines = EmptyLines + 1;
+            continue;
           }
           if (Words.containsKey(word)) {
             Words.put(word, Words.get(word) + 1);
           } else {
             Words.put(word, 1);
           }
+          
+          // Check if the word is a punctuation character
+          if (punctChars.containsKey(charFound)) {
+            punctChars.put(charFound, punctChars.get(charFound) + 1);
+          } else {
+            punctChars.put(charFound, 1);
+          }
         }
         totalWords += wordsInLine.length;
       }
+      //System.out.println(punctChars);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -55,6 +68,11 @@ public class Parser {
   public void showWordsWithCount(String word) {
     if (this.Words.containsKey(word)) {
       System.out.println(word + " aparece " + this.Words.get(word) + " veces");
+
+    } else if (this.punctChars.containsKey(word)) {
+
+      System.out.println("El caracter \"" + word + "\" aparece " + this.punctChars.get(word) + " veces");
+
     } else {
       System.out.println("La palabra(s) \"" + word + "\" no se encuentra en el archivo");
     }
