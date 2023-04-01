@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author spaghetti
- *
- */
-module elpepe {
-}
