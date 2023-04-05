@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
@@ -12,23 +13,27 @@ import java.awt.event.KeyEvent;
 import java.awt.TextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
-import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import utils.Validations;
+
 import java.awt.Font;
-import javax.swing.border.CompoundBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 
 public class Pokedex {
 
 	private JFrame frmPokedex;
 	private TextField txtIngreseElNmero;
 	private JTable table;
-	private JTextField textField;
+	private JTextField opProcess;
 
 	/**
 	 * Launch the application.
@@ -56,6 +61,7 @@ public class Pokedex {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("serial")
 	private void initialize() {
 		// -- MAIN FRAME --
 		frmPokedex = new JFrame();
@@ -78,9 +84,10 @@ public class Pokedex {
 		txtIngreseElNmero.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
+					lblNmero.setText("Número");
 					txtIngreseElNmero.setEditable(true);
 				} else {
-					txtIngreseElNmero.setEditable(true);
+					txtIngreseElNmero.setText(null);
 					lblNmero.setText("Solo números");
 				}
 			}
@@ -98,22 +105,22 @@ public class Pokedex {
 		frmPokedex.getContentPane().add(txtNombre);
 		
 		// -- FIRST KIND OF POKEMON
-		JLabel lblTipo = new JLabel("Tipo 1");
+		JLabel lblTipo = new JLabel("Tipo 2");
 		lblTipo.setBounds(161, 94, 60, 17);
 		frmPokedex.getContentPane().add(lblTipo);
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Normal", "Luchador", "Aéreo", "Veneno", "Tierra", "Roca", "Bicho", "Fantasma", "Hierro", "Fuego", "Agua", "Planta", "Eléctrico", "Psíquico", "Hielo", "Dragón", "Siniestro", "Hada"}));
-		comboBox.setBounds(32, 123, 98, 26);
-		frmPokedex.getContentPane().add(comboBox);
+		JComboBox<String> comboBoxTipo1 = new JComboBox<String>();
+		comboBoxTipo1.setModel(new DefaultComboBoxModel<String>(new String[] {"Normal", "Luchador", "Aéreo", "Veneno", "Tierra", "Roca", "Bicho", "Fantasma", "Hierro", "Fuego", "Agua", "Planta", "Eléctrico", "Psíquico", "Hielo", "Dragón", "Siniestro", "Hada"}));
+		comboBoxTipo1.setBounds(32, 123, 98, 26);
+		frmPokedex.getContentPane().add(comboBoxTipo1);
 		
 		// -- SECOND KIND OF POKEMON
-		JLabel lblTipo_1 = new JLabel("Tipo 2");
+		JLabel lblTipo_1 = new JLabel("Tipo 1");
 		lblTipo_1.setBounds(32, 94, 60, 17);
 		frmPokedex.getContentPane().add(lblTipo_1);
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setModel(new DefaultComboBoxModel<String>(new String[] {"Nada", "Normal", "Luchador", "Aéreo", "Veneno", "Tierra", "Roca", "Bicho", "Fantasma", "Hierro", "Fuego", "Agua", "Planta", "Eléctrico", "Psíquico", "Hielo", "Dragón", "Siniestro", "Hada"}));
-		comboBox_1.setBounds(161, 123, 98, 26);
-		frmPokedex.getContentPane().add(comboBox_1);	
+		JComboBox<String> comboBoxTipo2 = new JComboBox<String>();
+		comboBoxTipo2.setModel(new DefaultComboBoxModel<String>(new String[] {"Nada", "Normal", "Luchador", "Aéreo", "Veneno", "Tierra", "Roca", "Bicho", "Fantasma", "Hierro", "Fuego", "Agua", "Planta", "Eléctrico", "Psíquico", "Hielo", "Dragón", "Siniestro", "Hada"}));
+		comboBoxTipo2.setBounds(161, 123, 98, 26);
+		frmPokedex.getContentPane().add(comboBoxTipo2);	
 
 		JButton btnRegistrar = new JButton("Registrar");
 		
@@ -136,48 +143,89 @@ public class Pokedex {
 		btnActualizar.setBounds(291, 230, 105, 27);
 		frmPokedex.getContentPane().add(btnActualizar);
 		
-		JLabel lblTipo_1_1 = new JLabel("Sexo");
-		lblTipo_1_1.setBounds(32, 163, 60, 17);
-		frmPokedex.getContentPane().add(lblTipo_1_1);
+		JLabel lblSex = new JLabel("Sexo");
+		lblSex.setBounds(32, 163, 60, 17);
+		frmPokedex.getContentPane().add(lblSex);
 		JComboBox<String> comboBox_2 = new JComboBox<String>();
 		comboBox_2.setModel(new DefaultComboBoxModel<String>(new String[] {"No especificado", "Masculino", "Femenino"}));
 		comboBox_2.setBounds(32, 192, 98, 26);
 		frmPokedex.getContentPane().add(comboBox_2);
 				
-		JLabel lblUb_1 = new JLabel("Ubicación");
-		lblUb_1.setBounds(161, 168, 147, 17);
-		frmPokedex.getContentPane().add(lblUb_1);
+		JLabel lblUb = new JLabel("Ubicación");
+		lblUb.setBounds(161, 168, 147, 17);
+		frmPokedex.getContentPane().add(lblUb);
 		TextField txtUbi = new TextField();
 		txtUbi.setBounds(161, 197, 198, 21);
 		frmPokedex.getContentPane().add(txtUbi);
 		
-		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		table = new JTable() {
+			@Override
+			public boolean isCellEditable(int rows, int columns) {
+				return false;
+				
+			}
+		};
+		table.setForeground(Color.WHITE);
+		table.setBackground(Color.DARK_GRAY);
+
+		table.setCellSelectionEnabled(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setColumnSelectionAllowed(false);
+		table.setRowSelectionAllowed(true);
+		
 		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
 			new String[] {
 				"Numero", "Nombre", "Tipo 1", "Tipo 2", "Sexo", "Ubicacion"
-			}, 0));
-		table.setBounds(12, 326, 426, 142);
-		table.setEnabled(false);
-		table.isCellEditable(0, 0);
+			}
+		));
+		table.setBounds(12, 329, 426, 139);
+		// We set it in a JScrollPane
 		frmPokedex.getContentPane().add(table);
-		
-		JLabel lblPokedex = new JLabel("Pokedex");
-		lblPokedex.setLabelFor(table);
-		lblPokedex.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblPokedex.setBounds(186, 288, 74, 26);
-		frmPokedex.getContentPane().add(lblPokedex);
 		
 		JLabel opStatus = new JLabel("Estado de la operación:");
 		opStatus.setFont(new Font("Dialog", Font.BOLD, 16));
 		opStatus.setBounds(18, 480, 203, 17);
 		frmPokedex.getContentPane().add(opStatus);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(216, 480, 114, 21);
-		frmPokedex.getContentPane().add(textField);
-		textField.setColumns(10);
+		opProcess = new JTextField();
+		opProcess.setFont(new Font("Dialog", Font.BOLD, 14));
+		opProcess.setBackground(Color.DARK_GRAY);
+		opProcess.setEditable(false);
+		opProcess.setBounds(216, 480, 180, 21);
+		frmPokedex.getContentPane().add(opProcess);
+		opProcess.setColumns(10);
+		
+		JLabel tableNum = new JLabel("Numero");
+		tableNum.setHorizontalAlignment(SwingConstants.CENTER);
+		tableNum.setBounds(12, 301, 60, 17);
+		frmPokedex.getContentPane().add(tableNum);
+		
+		JLabel tableName = new JLabel("Nombre");
+		tableName.setHorizontalAlignment(SwingConstants.CENTER);
+		tableName.setBounds(84, 301, 60, 17);
+		frmPokedex.getContentPane().add(tableName);
+		
+		JLabel tableTipo1 = new JLabel("Tipo 1");
+		tableTipo1.setHorizontalAlignment(SwingConstants.CENTER);
+		tableTipo1.setBounds(161, 300, 60, 17);
+		frmPokedex.getContentPane().add(tableTipo1);
+		
+		JLabel tableTipo2 = new JLabel("Tipo 2");
+		tableTipo2.setHorizontalAlignment(SwingConstants.CENTER);
+		tableTipo2.setBounds(230, 300, 60, 17);
+		frmPokedex.getContentPane().add(tableTipo2);
+		
+		JLabel tableSexo = new JLabel("Sexo");
+		tableSexo.setHorizontalAlignment(SwingConstants.CENTER);
+		tableSexo.setBounds(299, 301, 60, 17);
+		frmPokedex.getContentPane().add(tableSexo);
+		
+		JLabel lblUbicacion = new JLabel("Ubicacion");
+		lblUbicacion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUbicacion.setBounds(371, 301, 60, 17);
+		frmPokedex.getContentPane().add(lblUbicacion);
 
 		JMenuBar menuBar = new JMenuBar();
 		frmPokedex.setJMenuBar(menuBar);
@@ -192,29 +240,33 @@ public class Pokedex {
 		 * Events triggered
 		*/
 		btnRegistrar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				TextField number = txtIngreseElNmero;
 				TextField name = txtNombre;
-				String kind1 = (String) comboBox.getSelectedItem();
-				String kind2 = (String) comboBox_1.getSelectedItem();
+				String kind1 = (String) comboBoxTipo1.getSelectedItem();
+				String kind2 = (String) comboBoxTipo2.getSelectedItem();
 				String sex = (String) comboBox_2.getSelectedItem();
 				TextField address = txtUbi;
 				TextField[] inputs = {number, name, address};
-				JLabel[] labels = {lblNmero, lblNombre, lblUb_1};
-				JLabel[] labelsDefault = labels.clone();
+				JLabel[] labels = {lblNmero, lblNombre, lblUb};
 				boolean isOkStatus = false;
 				
 				// Checks if the input text field is empty or blank, if so, request for it to be filled.
 				for (int index = 0; index < inputs.length; index++) {
-					if (inputs[index].getText().isBlank() || inputs[index].getText().isEmpty()) {
-						if(!labelsDefault[index].getText().contains("*")) {
-							labels[index].setText(labels[index].getText().concat(" *"));
+					JLabel label = labels[index];
+					String labelTxt = label.getText();
+					
+					if (new Validations().validateInputs(inputs[index])) {
+						if(!labelTxt.contains("*")) {
+							label.setText(labelTxt.concat(" *"));
 						}
-						labels[index].setForeground(Color.RED);
+						label.setForeground(Color.RED);
+						isOkStatus = false;
 					} else {
-						if(labelsDefault[index].getText().contains("*")) {
-							labels[index].setText(labelsDefault[index].getText().substring(0, labelsDefault[index].getText().length() - 2));
-							labels[index].setForeground(Color.BLACK);
+						if(labelTxt.contains("*")) {
+							label.setText(labelTxt.substring(0, labelTxt.length() - 2));
+							label.setForeground(Color.BLACK);
 						}
 						// Everything went good
 						isOkStatus = true;
@@ -224,8 +276,75 @@ public class Pokedex {
 				if(isOkStatus) {
 					DefaultTableModel model = (DefaultTableModel) table.getModel();
 					model.addRow(new String[] {number.getText(), name.getText(), kind1, kind2, sex, address.getText()});
+					
+					opProcess.setText(" Agregado a la tabla");
+					
+					opProcess.setForeground(Color.GREEN);
+				} else {
+					// An error occurred:
+					opProcess.setText("Error al agregar a tabla");
+					opProcess.setForeground(Color.RED)
+					;
 				}
 			}
+		});
+		
+		btnLimpiar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * Sets every TextField to null or ""
+				 */
+				txtIngreseElNmero.setText(null);
+				txtNombre.setText(null);
+				txtUbi.setText(null);
+				comboBoxTipo1.setSelectedIndex(0);
+				comboBoxTipo2.setSelectedIndex(0);
+				comboBox_2.setSelectedItem(0);
+				
+			}
+			
+		});
+		
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				int selectedRows = table.getSelectedRow();
+				for(int index = 0; index < 6; index++) {
+					/*
+					 * Prevent the event to propagate twice and checks if the selected row is correct
+					 */
+					if(!e.getValueIsAdjusting() && selectedRows != -1) {
+						String value = (String) table.getValueAt(selectedRows, index);
+						 /*
+						  * Fills the text inputs and the comboBoxes
+						  */
+						switch(index) {
+							case 0:
+								txtIngreseElNmero.setText(value);
+								break;
+							case 1:
+								txtNombre.setText(value);
+								break;
+							case 2:
+								comboBoxTipo1.setSelectedItem(value);
+								break;
+							case 3:
+								comboBoxTipo2.setSelectedItem(value);
+								break;
+							case 4:
+								comboBox_2.setSelectedItem(value);
+								break;
+							case 5:
+								txtUbi.setText(value);
+								break;
+								
+						}
+					}	
+				}
+			}
+			
 		});
 	}
 }
