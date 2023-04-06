@@ -4,12 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.TextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -20,6 +22,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import database.DbScheme;
+import database.Parser;
 import utils.Validations;
 
 import java.awt.Font;
@@ -27,6 +31,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.JMenu;
 
 public class Pokedex {
 
@@ -34,6 +39,7 @@ public class Pokedex {
 	private TextField txtIngreseElNmero;
 	private JTable table;
 	private JTextField opProcess;
+	private int selectedRows = -1;
 
 	/**
 	 * Launch the application.
@@ -83,12 +89,14 @@ public class Pokedex {
 		
 		txtIngreseElNmero.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent ke) {
-				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
+				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 					lblNmero.setText("Número");
 					txtIngreseElNmero.setEditable(true);
 				} else {
-					txtIngreseElNmero.setText(null);
+					txtIngreseElNmero.setText("");
+					txtIngreseElNmero.setEditable(false);
 					lblNmero.setText("Solo números");
+					lblNmero.setForeground(Color.RED);
 				}
 			}
 		});
@@ -193,11 +201,11 @@ public class Pokedex {
 		opProcess.setFont(new Font("Dialog", Font.BOLD, 14));
 		opProcess.setBackground(Color.DARK_GRAY);
 		opProcess.setEditable(false);
-		opProcess.setBounds(216, 480, 180, 21);
+		opProcess.setBounds(216, 480, 222, 21);
 		frmPokedex.getContentPane().add(opProcess);
 		opProcess.setColumns(10);
 		
-		JLabel tableNum = new JLabel("Numero");
+		JLabel tableNum = new JLabel("Número");
 		tableNum.setHorizontalAlignment(SwingConstants.CENTER);
 		tableNum.setBounds(12, 301, 60, 17);
 		frmPokedex.getContentPane().add(tableNum);
@@ -222,7 +230,7 @@ public class Pokedex {
 		tableSexo.setBounds(299, 301, 60, 17);
 		frmPokedex.getContentPane().add(tableSexo);
 		
-		JLabel lblUbicacion = new JLabel("Ubicacion");
+		JLabel lblUbicacion = new JLabel("Ubicación");
 		lblUbicacion.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUbicacion.setBounds(371, 301, 60, 17);
 		frmPokedex.getContentPane().add(lblUbicacion);
@@ -230,11 +238,78 @@ public class Pokedex {
 		JMenuBar menuBar = new JMenuBar();
 		frmPokedex.setJMenuBar(menuBar);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Archivo");
-		menuBar.add(mntmNewMenuItem);
+		JMenu mnArchivo = new JMenu("Archivo");
+		menuBar.add(mnArchivo);
 		
-		JMenuItem mntmAyuda = new JMenuItem("Ayuda");
-		menuBar.add(mntmAyuda);
+		JMenuItem mntmAbrir = new JMenuItem("Abrir");
+		mntmAbrir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Parser p = new Parser("./db");
+					ArrayList<DbScheme> data = p.read();
+
+					for(DbScheme val : data) {
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						
+						model.addRow(new String[] {
+							val.getNumber(),
+							val.getName(),
+							val.getKind1(),
+							val.getKind2(),
+							val.getSex(),
+							val.getAddress()
+						});
+					}
+					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		mnArchivo.add(mntmAbrir);
+		
+		JMenuItem mntmGuardar = new JMenuItem("Guardar");
+		mntmGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Parser p = new Parser("./db");
+					for(int i = 0; i < table.getRowCount(); i++) {
+						ArrayList<String> rowData = new ArrayList<String>();
+						for(int j = 0; j < table.getColumnCount(); j++) {
+							rowData.add((String) table.getValueAt(i, j));
+						}
+						System.out.println(rowData);
+						p.write(rowData);
+					}
+				} catch (IOException err) {
+					// TODO Auto-generated catch block
+					err.printStackTrace();
+			 }
+		 }
+		});
+		mnArchivo.add(mntmGuardar);
+		
+		JMenuItem mntmSalir = new JMenuItem("Salir");
+		mntmSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		mnArchivo.add(mntmSalir);
+		
+		JMenu mnAyuda = new JMenu("Ayuda");
+		menuBar.add(mnAyuda);
+		
+		JMenuItem mntmSobre = new JMenuItem("Acerca de");
+		mntmSobre.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane about = new JOptionPane();
+				about.showMessageDialog(mntmSobre, "Alejandro López\nGithub: alejandro0619\n");
+			}
+		});
+		mnAyuda.add(mntmSobre);
 		
 		/*
 		 * Events triggered
@@ -256,7 +331,7 @@ public class Pokedex {
 				for (int index = 0; index < inputs.length; index++) {
 					JLabel label = labels[index];
 					String labelTxt = label.getText();
-					
+					 
 					if (new Validations().validateInputs(inputs[index])) {
 						if(!labelTxt.contains("*")) {
 							label.setText(labelTxt.concat(" *"));
@@ -306,11 +381,63 @@ public class Pokedex {
 			}
 			
 		});
-		
+		btnActualizar.addActionListener(new ActionListener() {
+			@Override 
+			public void actionPerformed(ActionEvent e) {
+				TextField number = txtIngreseElNmero;
+				TextField name = txtNombre;
+				String kind1 = (String) comboBoxTipo1.getSelectedItem();
+				String kind2 = (String) comboBoxTipo2.getSelectedItem();
+				String sex = (String) comboBox_2.getSelectedItem();
+				TextField address = txtUbi;
+				TextField[] inputs = {number, name, address};
+				JLabel[] labels = {lblNmero, lblNombre, lblUb};
+				boolean isOkStatus = false;
+				
+				// Checks if the input text field is empty or blank, if so, request for it to be filled.
+				for (int index = 0; index < inputs.length; index++) {
+					JLabel label = labels[index];
+					String labelTxt = label.getText();
+					 
+					if (new Validations().validateInputs(inputs[index])) {
+						if(!labelTxt.contains("*")) {
+							label.setText(labelTxt.concat(" *"));
+						}
+						label.setForeground(Color.RED);
+						isOkStatus = false;
+					} else {
+						if(labelTxt.contains("*")) {
+							label.setText(labelTxt.substring(0, labelTxt.length() - 2));
+							label.setForeground(Color.BLACK);
+						}
+						// Everything went good
+						isOkStatus = true;
+					}
+				}
+				// Update table's values if no error occurred
+				if(isOkStatus) {
+					if (selectedRows != -1) {
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						for(int index = 0; index < 6; index++) {
+							String[] values = new String[] {number.getText(), name.getText(), kind1, kind2, sex, address.getText()};
+							model.setValueAt(values[index], selectedRows, index);
+						}
+					} else {
+						// An error occurred:
+						opProcess.setText("No hay tabla seleccionada");
+						opProcess.setForeground(Color.RED);
+					}
+				} else {
+					// An error occurred:
+					opProcess.setText("Hay campos vacíos");
+					opProcess.setForeground(Color.RED);
+				}
+			}
+		});
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				int selectedRows = table.getSelectedRow();
+				selectedRows = table.getSelectedRow();
 				for(int index = 0; index < 6; index++) {
 					/*
 					 * Prevent the event to propagate twice and checks if the selected row is correct
