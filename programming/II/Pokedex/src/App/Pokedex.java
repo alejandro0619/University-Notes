@@ -10,8 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.awt.TextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -71,6 +73,7 @@ public class Pokedex {
 	private void initialize() {
 		// -- MAIN FRAME --
 		frmPokedex = new JFrame();
+		frmPokedex.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frmPokedex.setTitle("Pokedex");
 		frmPokedex.setBounds(100, 100, 450, 600);
 		frmPokedex.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,6 +94,7 @@ public class Pokedex {
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 					lblNmero.setText("Número");
+					lblNmero.setForeground(Color.BLACK); 
 					txtIngreseElNmero.setEditable(true);
 				} else {
 					txtIngreseElNmero.setText("");
@@ -188,52 +192,88 @@ public class Pokedex {
 				"Numero", "Nombre", "Tipo 1", "Tipo 2", "Sexo", "Ubicacion"
 			}
 		));
-		table.setBounds(12, 329, 426, 139);
+		table.setBounds(12, 314, 426, 139);
 		// We set it in a JScrollPane
 		frmPokedex.getContentPane().add(table);
 		
 		JLabel opStatus = new JLabel("Estado de la operación:");
 		opStatus.setFont(new Font("Dialog", Font.BOLD, 16));
-		opStatus.setBounds(18, 480, 203, 17);
+		opStatus.setBounds(18, 501, 203, 17);
 		frmPokedex.getContentPane().add(opStatus);
 		
 		opProcess = new JTextField();
 		opProcess.setFont(new Font("Dialog", Font.BOLD, 14));
 		opProcess.setBackground(Color.DARK_GRAY);
 		opProcess.setEditable(false);
-		opProcess.setBounds(216, 480, 222, 21);
+		opProcess.setBounds(216, 500, 222, 21);
 		frmPokedex.getContentPane().add(opProcess);
 		opProcess.setColumns(10);
 		
 		JLabel tableNum = new JLabel("Número");
 		tableNum.setHorizontalAlignment(SwingConstants.CENTER);
-		tableNum.setBounds(12, 301, 60, 17);
+		tableNum.setBounds(12, 286, 60, 17);
 		frmPokedex.getContentPane().add(tableNum);
 		
 		JLabel tableName = new JLabel("Nombre");
 		tableName.setHorizontalAlignment(SwingConstants.CENTER);
-		tableName.setBounds(84, 301, 60, 17);
+		tableName.setBounds(84, 286, 60, 17);
 		frmPokedex.getContentPane().add(tableName);
 		
 		JLabel tableTipo1 = new JLabel("Tipo 1");
 		tableTipo1.setHorizontalAlignment(SwingConstants.CENTER);
-		tableTipo1.setBounds(161, 300, 60, 17);
+		tableTipo1.setBounds(161, 285, 60, 17);
 		frmPokedex.getContentPane().add(tableTipo1);
 		
 		JLabel tableTipo2 = new JLabel("Tipo 2");
 		tableTipo2.setHorizontalAlignment(SwingConstants.CENTER);
-		tableTipo2.setBounds(230, 300, 60, 17);
+		tableTipo2.setBounds(230, 285, 60, 17);
 		frmPokedex.getContentPane().add(tableTipo2);
 		
 		JLabel tableSexo = new JLabel("Sexo");
 		tableSexo.setHorizontalAlignment(SwingConstants.CENTER);
-		tableSexo.setBounds(299, 301, 60, 17);
+		tableSexo.setBounds(299, 286, 60, 17);
 		frmPokedex.getContentPane().add(tableSexo);
 		
 		JLabel lblUbicacion = new JLabel("Ubicación");
 		lblUbicacion.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUbicacion.setBounds(371, 301, 60, 17);
+		lblUbicacion.setBounds(371, 286, 60, 17);
 		frmPokedex.getContentPane().add(lblUbicacion);
+		
+		JButton btnBorrarTabla = new JButton("Borrar tabla");
+		btnBorrarTabla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				if(table.getRowCount() != 0) {
+					model.setRowCount(0);
+					opProcess.setText("Tabla borrada correctamente");
+					opProcess.setForeground(Color.GREEN);
+				} else {
+					opProcess.setText("Tabla vacía");
+					opProcess.setForeground(Color.RED);
+				}
+			}
+		});
+		btnBorrarTabla.setBounds(129, 462, 105, 27);
+		frmPokedex.getContentPane().add(btnBorrarTabla);
+		
+		JButton btnBorrarFila = new JButton("Borrar fila");
+		btnBorrarFila.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				int selectedRow = table.getSelectedRow();
+				if(selectedRow != -1) {
+					model.removeRow(selectedRow);
+					opProcess.setText("Fila eliminada correctamente");
+					opProcess.setForeground(Color.GREEN);
+				} else {
+					opProcess.setText("No hay fila seleccionada");
+					opProcess.setForeground(Color.RED);
+				}
+				
+			}
+		});
+		btnBorrarFila.setBounds(12, 465, 105, 27);
+		frmPokedex.getContentPane().add(btnBorrarFila);
 
 		JMenuBar menuBar = new JMenuBar();
 		frmPokedex.setJMenuBar(menuBar);
@@ -247,7 +287,7 @@ public class Pokedex {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Parser p = new Parser("./db");
-					ArrayList<DbScheme> data = p.read();
+					Vector<DbScheme> data = p.read();
 
 					for(DbScheme val : data) {
 						DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -260,9 +300,13 @@ public class Pokedex {
 							val.getSex(),
 							val.getAddress()
 						});
+						opProcess.setText("Tabla cargada");
+						opProcess.setForeground(Color.GREEN);
 					}
 					
 				} catch (IOException e1) {
+					opProcess.setText("Debido a un error, tabla no cargada");
+					opProcess.setForeground(Color.RED);
 					e1.printStackTrace();
 				}
 			}
@@ -274,16 +318,32 @@ public class Pokedex {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Parser p = new Parser("./db");
+					/*
+					 * Clears the file before writing to it.
+					 * Because it is a for loop iterating over the values in the rows and columns and by each column adding the value and calling the function
+					 * When the FileWriter is on appending mode, it appends everything in the column, no matter if it's duplicated.
+					 * To avoid this, I clear the data in the file before adding more data.
+					 * If data is stored in the file and you save more info without retrieving the data from the file to the table before
+					 * It is meant to delete the data, so everything will be removed.
+					 */
+					FileWriter fw2 = new FileWriter("./db.txt", false);
+					fw2.write("");
+					fw2.close();
+					
 					for(int i = 0; i < table.getRowCount(); i++) {
 						ArrayList<String> rowData = new ArrayList<String>();
 						for(int j = 0; j < table.getColumnCount(); j++) {
 							rowData.add((String) table.getValueAt(i, j));
 						}
-						System.out.println(rowData);
 						p.write(rowData);
+						opProcess.setText("Tabla guardada");
+						opProcess.setForeground(Color.GREEN);
 					}
+					
 				} catch (IOException err) {
 					// TODO Auto-generated catch block
+					opProcess.setText("No se ha podido guardar");
+					opProcess.setForeground(Color.RED);
 					err.printStackTrace();
 			 }
 		 }
@@ -325,7 +385,8 @@ public class Pokedex {
 				TextField address = txtUbi;
 				TextField[] inputs = {number, name, address};
 				JLabel[] labels = {lblNmero, lblNombre, lblUb};
-				boolean isOkStatus = false;
+				
+				boolean isOkStatus = true;
 				
 				// Checks if the input text field is empty or blank, if so, request for it to be filled.
 				for (int index = 0; index < inputs.length; index++) {
@@ -338,13 +399,15 @@ public class Pokedex {
 						}
 						label.setForeground(Color.RED);
 						isOkStatus = false;
+						
 					} else {
 						if(labelTxt.contains("*")) {
 							label.setText(labelTxt.substring(0, labelTxt.length() - 2));
 							label.setForeground(Color.BLACK);
+							// Everything went good
+							isOkStatus = true;
 						}
-						// Everything went good
-						isOkStatus = true;
+						
 					}
 				}
 				// Adds to the table and the file
@@ -357,7 +420,7 @@ public class Pokedex {
 					opProcess.setForeground(Color.GREEN);
 				} else {
 					// An error occurred:
-					opProcess.setText("Error al agregar a tabla");
+					opProcess.setText("Hay campos vacios");
 					opProcess.setForeground(Color.RED)
 					;
 				}
