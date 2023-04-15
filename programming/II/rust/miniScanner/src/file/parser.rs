@@ -1,3 +1,6 @@
+use std::fs::File;
+use std::io::{self, Read};
+
 struct Parser<'a> {
     file_path: &'a str
 }
@@ -9,7 +12,12 @@ impl Parser<'_> {
         }
     }
     // This should return a hashmap
-    fn read() {
+    fn read(&self) -> io::Result<()>{
+        let mut file = File::open(self.file_path)?;
+        let mut content = String::new();
+
+        file.read_to_string(&mut content)?;
+        
         unimplemented!()
     }
     // If the word is found, get the number of coincidences
