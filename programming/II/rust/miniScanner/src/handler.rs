@@ -1,2 +1,3 @@
-pub mod main_menu;
 mod input;
+pub mod main_menu;
+

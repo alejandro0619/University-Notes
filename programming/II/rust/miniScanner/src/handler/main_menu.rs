@@ -26,7 +26,7 @@ impl Menu {
             match option {
                 1 => {
                     println!("Ingresar palabras a buscar");
-                    Input::new().get_words();
+                    Input::new().words_to_search();
                 }
                 2 => {
                     println!("Estadísticas del archivo");
