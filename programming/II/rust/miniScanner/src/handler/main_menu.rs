@@ -11,7 +11,7 @@ impl Menu {
         Menu { state: true }
     }
 
-    pub fn display_menu(&mut self) {
+    pub fn display_menu(&mut self) -> std::io::Result<()> {
         while self.state {
             println!("Menú principal");
             println!("(1) Ingresar palabras a buscar");
@@ -25,8 +25,9 @@ impl Menu {
             let option: u32 = option.trim().parse().expect("Error al convertir la opción");
             match option {
                 1 => {
-                    println!("Ingresar palabras a buscar");
-                    Input::new().words_to_search();
+                    let mut i = Input::new();
+                    i.words_to_search();
+                    i.search()?;                    
                 }
                 2 => {
                     println!("Estadísticas del archivo");
@@ -43,5 +44,6 @@ impl Menu {
                 }
             }
         }
+        Ok(())
     }
 }
