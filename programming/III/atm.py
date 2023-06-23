@@ -28,6 +28,13 @@ def generar_numero_acc():
   num_acc = random.randint(10**19, 10**20 - 1)
   return num_acc
 
+def retiro(user):
+  withdrawal = float(input("Ingrese la cantidad de dinero a retirar: "))
+  if withdrawal > db[user].get("balance"):
+    print("Monto insuficiente a retirar")
+  else:
+    db[user] = {**db[user], "balance": db[user].get("balance") - withdrawal}
+
 def deposito(user):
   option = int(input("OPCIONES DEL DEPÓSITO:\n 1) Mismo titular\n 2) Tercero\nRespuesta: "))
 
@@ -37,7 +44,26 @@ def deposito(user):
     db[user] = {**old, "balance" : old.get("balance")  + income_balance}
 
   elif option == 2:
-    print("tercero")
+    deposit = float(input("Ingrese el dinero a depositar: "))
+    if deposit <= db[user].get("balance"):
+
+      dni_dest = input("Ingrese su cédula: ")
+      found = False
+      for (i, acc) in enumerate(db):
+        if dni_dest not in acc.values():
+          found = False
+        else:
+          found = True
+          # Restamos el depósito de nuestra cuenta
+          db[user] = { **db[user], "balance": db[user].get("balance") - deposit }
+          # Agregamos el depósito a la cuenta destinataria
+          db[i] = { **db[i], "balance": db[i].get("balance") + deposit }
+          print("------------")
+          print("Depósito efectuado correctamente a:" + db[i].get("name") + " (" + str(db[i].get("acc")) + ")")
+      if not found:
+        print("Cuenta destinataria errónea")
+    else:
+      print("Cantidad inválida")
   else:
     print("Opción incorrecta")
 
@@ -56,7 +82,7 @@ def menu_usuario(user):
       deposito(user)
       continue
     elif option == 3:
-      print("Retiro")
+      retiro(user)
       continue
     elif option == 4:
       print("hasta luego, " + db[user].get("name"))
@@ -65,7 +91,7 @@ def menu_usuario(user):
       print("Opción incorrecta")
 
 def agregar():
-  # Agregamos a un usuario, pidiendo sus datos básicos
+    # Agregamos a un usuario, pidiendo sus datos básicos
     name_lastname = input("Ingrese su nombre y apellido: ")
     user_dni = input("Ingrese su cédula: ")
     password = input("Ingrese su contraseña: ")
@@ -78,7 +104,6 @@ def agregar():
         "password": password,
         "balance": 0
     })
-
 
 def iniciar_sesion():
   # Chequeamos si la cédula está en nuestro sistema y posteriormente comprobamos la contraseña
@@ -96,7 +121,6 @@ def iniciar_sesion():
   if not found:
     print("El usuario no se encontrado")
     
-
 
 def menu():
     # Aqui podemos decidir que opcion tomar: 1) Agregar usuario 2) Entrar en cuenta 3) Salir
